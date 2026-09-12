@@ -1,0 +1,96 @@
+generated: '2026-09-12'
+method: derived
+source: openapi/affectiva-eaas-*.json
+status: candidate
+description: >-
+  AFFECTIVA SHIPS NO MCP SERVER. Searched the company site, the iMotions product pages, the
+  GitHub org and npm/PyPI on 2026-09-12 and found nothing; mcp.affectiva.com does not resolve,
+  and POSTing tools/list to https://index.affectiva.com/mcp, /graphql and /sse returns 404.
+  The tools below are a CANDIDATE surface DERIVED from the provider's own published Swagger
+  2.0 operations — what an MCP server over the Affectiva Facial Coding API would expose if
+  anyone built one. They are not offered by Affectiva and no endpoint exists to call.
+deployment:
+  mode: none
+  auth: api-key
+  verified: derived
+  note: >-
+    auth reflects what the underlying REST API requires (HTTP Basic, realm "Affectiva Facial
+    Coding API"), not an MCP authorization scheme — there is no MCP server to authorize to.
+surface:
+  openapi: openapi/affectiva-eaas-*.json (13 documents, 51 operations)
+  rest_base: https://index.affectiva.com
+  mcp: null
+tools:
+- name: list_data_collection_projects
+  description: List every data collection project on the account.
+  rest: GET /data_collection_projects
+  source: openapi/affectiva-eaas-data_collection_projects.json
+- name: create_data_collection_project
+  description: Create a new data collection project.
+  rest: POST /data_collection_projects
+  source: openapi/affectiva-eaas-data_collection_projects.json
+- name: get_data_collection_project
+  description: Fetch one data collection project by ID.
+  rest: GET /data_collection_projects/{id}
+  source: openapi/affectiva-eaas-data_collection_projects.json
+- name: list_jobs
+  description: List analysis jobs.
+  rest: GET /jobs
+  source: openapi/affectiva-eaas-jobs.json
+- name: create_job
+  description: Submit a new facial-coding analysis job, uploading media or naming an input URL.
+  rest: POST /jobs
+  source: openapi/affectiva-eaas-jobs.json
+- name: get_job
+  description: Fetch one job and its status by ID.
+  rest: GET /jobs/{jobID}
+  source: openapi/affectiva-eaas-jobs.json
+- name: create_entry
+  description: Create an entry — the unit of media a representation and its metrics hang off.
+  rest: POST /entries
+  source: openapi/affectiva-eaas-entries.json
+- name: get_entry
+  description: Fetch an entry by ID.
+  rest: GET /entries/{entryID}
+  source: openapi/affectiva-eaas-entries.json
+- name: search_entries_by_annotation
+  description: Find entries by annotation source, key and value.
+  rest: GET /entries/search_by_annotation
+  source: openapi/affectiva-eaas-entries.json
+- name: annotate_entry
+  description: Attach an annotation to an existing entry.
+  rest: POST /entries/{entryID}/annotations
+  source: openapi/affectiva-eaas-entries.json
+- name: create_representation
+  description: Add a representation (a derived rendering of an entry's media).
+  rest: POST /entries/{entryID}/representations
+  source: openapi/affectiva-eaas-representations.json
+- name: get_representation_media
+  description: Retrieve the media bytes for a representation.
+  rest: GET /entries/{entryID}/representations/{representationID}/media
+  source: openapi/affectiva-eaas-representations.json
+- name: create_frame_sampling_job
+  description: Create a sampling job that cuts a video into frames or segments.
+  rest: POST /frame_sampling_jobs
+  source: openapi/affectiva-eaas-frame_sampling_jobs.json
+- name: create_labeling_job
+  description: Create a human-labeling job.
+  rest: POST /labeling_jobs
+  source: openapi/affectiva-eaas-labeling_jobs.json
+- name: get_labeling_task
+  description: Fetch a labeling task by ID.
+  rest: GET /labeling_tasks/{id}
+  source: openapi/affectiva-eaas-labeling_tasks.json
+probes:
+- url: https://index.affectiva.com/mcp
+  method: POST tools/list
+  status: 404
+- url: https://index.affectiva.com/graphql
+  method: POST tools/list
+  status: 404
+- url: https://index.affectiva.com/sse
+  method: POST tools/list
+  status: 404
+- url: https://mcp.affectiva.com/
+  status: null
+  note: NXDOMAIN — no DNS record.

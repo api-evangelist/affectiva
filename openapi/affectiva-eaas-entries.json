@@ -1,0 +1,416 @@
+{
+    "swagger": "2.0",
+    
+    "info": {
+        "description": "This is a documentation for Eaas api-experiments",
+        "version": "0.1.0",
+        "title": "Eaas Entries",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+
+    "basePath": "/",
+
+    "tags": [
+        {
+            "name": "entries"
+        },
+        {
+            "name": "annotations"
+        }
+    ],
+
+    "schemes": [
+        "https",
+        "http"
+    ],
+
+    "paths": {
+        "/entries": {
+            "post": {
+                "tags": [
+                    "entries"
+                ],
+                "summary": "Add a new entry",
+                "description": "",
+                "consumes": [
+                    "multipart/form-data",
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "formData",
+                        "name": "entry[media]",
+                        "description": "entry media file",
+                        "required": true,
+                        "type":"file"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "entry[storage_type]",
+                        "description": "storage type(s3-efs-nas)",
+                        "required": false,
+                        "type":"string"
+                    }
+                  
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success, entry created"
+                    },
+                    "422":{
+                        "description": "Unprocessable Entity"
+                    }
+                },
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ]
+            }
+        },
+        "/entries/{entryID}": {
+            "get": {
+                "tags": [
+                    "entries"
+                ],
+                "summary": "Get all entries",
+                "description": "",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                },
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "entryID",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "entries"
+                ],
+                "summary": "Updates an entry",
+                "description": "",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "entryID",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "entry",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                               "entry": {
+                                   "type": "object",
+                                   "properties":{
+                                       "data_split":{
+                                           "type":"string",
+                                           "default": "validation"
+                                       }
+                                   } 
+                               }
+                           }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+  
+                },
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "entries"
+                ],
+                "summary": "Delete entry by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "entryID",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Deleted successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                },
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ]
+            }
+        },
+        "/entries/search_by_annotation": {
+            "get": {
+                "tags": [
+                    "entries"
+                ],
+                "summary": "Get all entries by annotations",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "key",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "value",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "source",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ]
+            }
+        },
+        "/entries/{entryID}/annotations": {
+            "post": {
+                "tags": [
+                    "annotations"
+                ],
+                "summary": "Add annotation to an existing entry",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "entryID",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "in": "body",
+                        "name": "add_annotation",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "annotation": {
+                                    "type": "object",
+                                    "required": ["key","value","source"],
+                                    "properties": {
+                                        "key": {
+                                            "type": "string",
+                                            "example": "Project"
+                                        },
+                                        "value": {
+                                            "type": "string",
+                                            "example": "DAC016"
+                                        },
+                                        "source": {
+                                            "type": "string",
+                                            "example": "affectiva"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
+        "/entries/{entryID}/annotations/{annotationID}": {
+            "put": {
+                "tags": [
+                    "annotations"
+                ],
+                "summary": "update annotation",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "entryID",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "in": "path",
+                        "name": "annotationID",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "in": "body",
+                        "name": "update_annotation",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "annotation": {
+                                    "type": "object",
+                                    "properties": {
+                                        "source": {
+                                            "type": "string",
+                                            "example": "smarteye"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "annotations"
+                ],
+                "summary": "delete annotation",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "entryID",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "in": "path",
+                        "name": "annotationID",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Deleted successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                },
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ]
+            }
+        }
+    },
+
+    "securityDefinitions": {
+        "basicAuth":{
+            "type": "basic"
+        }
+    },
+    "externalDocs": {
+        "description": "Find out more about Swagger",
+        "url": "http://swagger.io"
+    }
+}

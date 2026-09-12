@@ -1,0 +1,302 @@
+{
+    "swagger": "2.0",
+    
+    "info": {
+        "description": "This is a documentation for Eaas api-experiments",
+        "version": "0.1.0",
+        "title": "Eaas Event Configs",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+
+    "basePath": "/",
+
+    "tags": [
+        {
+            "name": "event configs",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http://swagger.io"
+            }
+        }
+    ],
+
+    "schemes": [
+        "https",
+        "http"
+    ],
+
+    "paths": {
+        "/data_collection_projects/{projectID}/event_configs": {
+            "get": {
+                "tags": [
+                    "event configs"
+                ],
+                "summary": "Get the project's event configurations (first one inside the database)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                },
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "projectID",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "event configs"
+                ],
+                "summary": "Add a new event configuration to the project",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "projectID",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "in": "body",
+                        "name":"event_configs",
+                        "schema":{
+                            "type": "object",
+                            "properties":{
+                                "name":{
+                                    "type": "string",
+                                    "example":"configs1"
+                                },
+                                "source":{
+                                    "type": "string",
+                                    "example":"affectiva"
+                                },
+                                "data":{
+                                    "type": "string",
+                                    "example":1
+                                },
+                                "description":{
+                                    "type": "string"
+                                }
+    
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success,created"
+                    },
+                    "422":{
+                        "description": "Unprocessable Entity"
+                    }
+                },
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ]
+            }
+        },
+        "/data_collection_projects/{projectID}/event_configs/{configsID}": {
+            "get": {
+                "tags": [
+                    "event configs"
+                ],
+                "summary": "Find representation storage by ID",
+                "description": "Returns a single event configuration",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "projectID",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "in": "path",
+                        "name": "configsID",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                },
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "event configs"
+                ],
+                "summary": "Updates an event configurations",
+                "description": "",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "projectID",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "configsID",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "in": "body",
+                        "name": "event_configs",
+                        "schema":{
+                            "type": "object",
+                            "properties":{
+                                "name":{
+                                    "type": "string",
+                                    "example":"configs1"
+                                },
+                                "source":{
+                                    "type": "string",
+                                    "example":"affectiva"
+                                },
+                                "data":{
+                                    "type": "string",
+                                    "example":1
+                                },
+                                "description":{
+                                    "type": "string"
+                                }
+    
+                            }
+                        }
+         
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+  
+                },
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "event configs"
+                ],
+                "summary": "Delete event configuration by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "projectID",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "in": "path",
+                        "name": "configsID",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Deleted successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                },
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ]
+            }
+        }
+    },
+
+    "securityDefinitions": {
+        "basicAuth":{
+            "type": "basic"
+        }
+    },
+
+    "externalDocs": {
+        "description": "Find out more about Swagger",
+        "url": "http://swagger.io"
+    }
+}

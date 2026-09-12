@@ -1,0 +1,99 @@
+generated: '2026-09-12'
+method: derived
+source: openapi/affectiva-eaas-*.json + live probes of https://index.affectiva.com, 2026-09-12
+description: >-
+  Cross-cutting runtime semantics of the Affectiva Facial Coding API (EaaS), derived from the
+  thirteen published Swagger 2.0 documents and from live unauthenticated response probes.
+  Affectiva publishes no conventions or "API basics" page — knowledge.affectiva.com is
+  decommissioned and developer.affectiva.com is behind an Atlassian login — so everything
+  here is read off the contract and the wire, and the gaps are recorded as gaps.
+authentication:
+  style: http-basic
+  header: 'Authorization: Basic <base64(user:pass)>'
+  realm: Affectiva Facial Coding API
+  applies_to: all 51 operations
+  evidence: securityDefinitions.basicAuth in all 13 documents; live 401 WWW-Authenticate challenge on https://index.affectiva.com/jobs
+  cross_ref: authentication/affectiva-authentication.yml
+idempotency:
+  coverage: none
+  mechanism: null
+  header: null
+  retention: null
+  evidence: >-
+    No Idempotency-Key (or equivalent) header, parameter or request-body field appears in any
+    of the 51 operations across the thirteen documents, and no idempotency behaviour is
+    documented anywhere the public can reach. The mutating surface is 33 operations
+    (POST/PUT/PATCH/DELETE), none of them replay-protected.
+  note: >-
+    PUT and DELETE are naturally idempotent by HTTP method semantics, but the API makes no
+    statement about safe retry of the 15 POST creates — a retried POST /jobs or POST /entries
+    has no documented dedupe key.
+reversibility:
+  status: none
+  grade: undocumented
+  write_surface: 33 operations (15 POST, 10 PUT/PATCH, 8 DELETE-shaped)
+  reversal_operations: []
+  windows: []
+  evidence: >-
+    The contract set publishes no cancel, abort, restore, undelete, undo or rollback
+    operation. Analysis jobs (POST /jobs, POST /frame_sampling_jobs) have no cancel path —
+    PUT /jobs/{jobID} updates a job record but is not documented as a cancellation. Deletes
+    (DELETE /entries/{entryID}, /data_collection_projects/{id}, /labeling_jobs/{id},
+    /video_frames/{id}, /video_segments/{id} and the nested representation, storage, event
+    config and event instance deletes) return 204 with no stated retention or restore window.
+  note: >-
+    NO WINDOW IS ASSERTED HERE because the provider states none. An agent deleting an entry
+    or a data collection project through this API has no published way to take it back.
+pagination:
+  style: none
+  params: []
+  response_fields: []
+  evidence: >-
+    The collection reads — GET /jobs, GET /data_collection_projects, GET /entries/{entryID},
+    GET .../event_configs, GET .../event_instances, GET .../representation_storages — declare
+    no page, per_page, limit, offset, cursor or since parameter. The only query parameters in
+    the entire spec set are `source`, `key` and `value` on /entries/search_by_annotation and
+    `labeling_job_id` on the labeling routes.
+filtering:
+  supported: partial
+  evidence: GET /entries/search_by_annotation takes source/key/value; GET /labeling_tasks and the annotation routes take labeling_job_id.
+field_expansion:
+  supported: false
+sparse_fieldsets:
+  supported: false
+metadata:
+  supported: true
+  mechanism: entry annotations
+  evidence: >-
+    Arbitrary key/value metadata attaches to an entry via POST /entries/{entryID}/annotations
+    (source/key/value), and is queryable back through GET /entries/search_by_annotation.
+request_id_tracing:
+  supported: true
+  response_header: X-Request-Id
+  documented: false
+  evidence: >-
+    Observed on every live response including the 401, e.g.
+    X-Request-Id: 41fb99dd-7aac-46f2-bd74-9c503a7ced80, alongside X-Runtime. Neither header
+    appears in the contract, so a consumer only learns about it by watching the wire.
+versioning:
+  scheme: info.version 0.1.0, basePath "/"
+  in_path: false
+  cross_ref: lifecycle/affectiva-lifecycle.yml
+content_negotiation:
+  request: application/json and multipart/form-data (file uploads on entries, jobs and representations)
+  response: application/json; charset=utf-8
+  schemes_advertised: [https, http]
+error_envelope:
+  shape: '{"error": "<message>"}'
+  rfc9457: false
+  cross_ref: errors/affectiva-problem-types.yml
+rate_limit_signaling:
+  documented: false
+  headers_observed: []
+  evidence: >-
+    No X-RateLimit-*, RateLimit-* or Retry-After header appeared on any live response, and no
+    429 is declared in the contract set.
+  cross_ref: rate-limits/affectiva-rate-limits.yml
+dry_run_mode:
+  supported: false
+  evidence: No preview, validate-only, simulate or dry_run parameter exists on any of the 33 write operations.

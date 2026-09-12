@@ -1,0 +1,60 @@
+generated: '2026-09-12'
+method: searched
+source: >-
+  https://index.affectiva.com/swagger/index.html, https://knowledge.affectiva.com/docs,
+  http://developer.affectiva.com/, http://auto.affectiva.com/, https://www.affectiva.com/
+description: >-
+  Lifecycle posture for Affectiva. There is no published versioning policy, no deprecation
+  policy, no Sunset/Deprecation header usage, no SLA and no status page. What the record DOES
+  show is an unusually clear decay trail: two developer-documentation hosts have been
+  decommissioned or walled since the Smart Eye acquisition, the browser SDK has not been
+  rebuilt since 2018, and the company's own product pages now 301 to iMotions.
+versioning:
+  scheme: document-level semantic version in info.version
+  current_version: 0.1.0
+  in_path: false
+  in_header: false
+  evidence: >-
+    All thirteen Swagger documents declare `info.version: 0.1.0` and `basePath: /`. There is
+    no /v1 prefix, no version query parameter and no version request header anywhere in the
+    contract set — an API with no addressable version cannot be versioned off safely.
+  note: >-
+    The affdex.js browser SDK versions independently and IS pinned in its distribution path
+    (3.1, 3.2, 3.2.1); its current build string is 3.2.1.583-b86b1d2.
+deprecation_policy:
+  published: false
+  sunset_header: false
+  deprecation_header: false
+  deprecated_operations: []
+  evidence: >-
+    No operation in any of the thirteen documents carries `deprecated: true`, and no
+    deprecation or sunset page exists on affectiva.com. No Deprecation pointer is wired.
+status_page:
+  published: false
+  url: null
+  evidence: status.affectiva.com does not resolve (NXDOMAIN, checked 2026-09-12). No status page is linked from any Affectiva or iMotions page found. No StatusPage pointer is wired.
+sla:
+  published: false
+support:
+  url: https://www.affectiva.com/contact-us/
+  note: 301s to https://imotions.com/products/media-analytics/contact-media-analytics/ — a sales contact form, not a developer support channel.
+observed_decay:
+- surface: https://knowledge.affectiva.com/docs
+  status: 401
+  finding: >-
+    The Affectiva Emotion SDK documentation hub — still the destination of every search
+    result and third-party tutorial — now returns a readme.io placeholder titled
+    "jltestproject79 / Not Yet Active. The creators of this project are still working on
+    making everything perfect!" The documentation project was reset or deleted.
+- surface: http://developer.affectiva.com/
+  status: 202
+  finding: 302s to id.atlassian.com; the developer portal is now a private Confluence space (affectiva.atlassian.net/wiki/spaces/auto) behind an Atlassian login.
+- surface: http://auto.affectiva.com/
+  status: 202
+  finding: Automotive SDK documentation, named in the company's own GitHub sample README, redirects to the same gated Confluence login.
+- surface: https://download.affectiva.com/js/3.2.1/affdex.js
+  status: 200
+  finding: Still served, Last-Modified Tue, 24 Jul 2018 — eight years without a rebuild.
+- surface: https://www.affectiva.com/product/emotion-sdk/
+  status: 301
+  finding: Redirects to https://imotions.com/products/affectiva-facial-coding-sdk/. /solutions/, /patents/ and /contact-us/ also 301 into imotions.com — the brand is being absorbed into its parent's.

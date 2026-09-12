@@ -1,0 +1,238 @@
+{
+    "swagger": "2.0",
+
+    "info": {
+        "description": "This is a documentation for Eaas api-experiments",
+        "version": "0.1.0",
+        "title": "Eaas Jobs",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+
+    "basePath": "/",
+
+    "tags": [
+        {
+            "name": "jobs",
+            "description": "Everything about your jobss",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http://swagger.io"
+            }
+        }
+    ],
+
+    "schemes": [
+        "https",
+        "http"
+    ],
+
+    "paths": {
+        "/jobs": {
+            "get": {
+                "tags": [
+                    "jobs"
+                ],
+                "summary": "Get all jobs",
+                "description": "",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                },
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "jobs"
+                ],
+                "summary": "Add a new job",
+                "description": "",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "formData",
+                        "name": "entry_job[name]",
+                        "description": "name of the algorithm encoder",
+                        "required": true,
+                        "type":"string",
+                        "default": "auto"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "entry_job[input]",
+                        "description": "Entry media file path on Eaas",
+                        "required": false,
+                        "type":"file"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "entry_job[input_url]",
+                        "description": "full path to the entry media file",
+                        "required": false,
+                        "type":"string"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "entry_job[storage_type]",
+                        "description": "storage type(s3-efs-nas)",
+                        "required": false,
+                        "type":"string",
+                        "default": "s3"
+                    }
+                  
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success, job created"
+                    },
+                    "422":{
+                        "description": "Unprocessable Entity"
+                    }
+                },
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ]
+            }
+        },
+        "/jobs/{jobID}": {
+            "get": {
+                "tags": [
+                    "jobs"
+                ],
+                "summary": "Find job by ID",
+                "description": "Returns a single job",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "jobID",
+                        "in": "path",
+                        "description": "ID of job to return",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "Job not found"
+                    }
+                },
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "jobs"
+                ],
+                "summary": "Updates a jobs",
+                "description": "",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "jobID",
+                        "in": "path",
+                        "description": "ID of the job that needs to be updated",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "entry_job[storage_type]",
+                        "in": "formData",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "entry_job[status]",
+                        "in": "formData",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "entry_job[result]",
+                        "description": "Entry media file updated",
+                        "in": "formData",
+                        "required": false,
+                        "type": "file"
+                    },
+                    {
+                        "name": "entry_job[name]",
+                        "in": "formData",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Job updated successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    }
+  
+                },
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ]
+            }
+        }
+    },
+
+    "securityDefinitions": {
+        "basicAuth":{
+            "type": "basic"
+        }
+    },
+
+    "externalDocs": {
+        "description": "Find out more about Swagger",
+        "url": "http://swagger.io"
+    }
+}

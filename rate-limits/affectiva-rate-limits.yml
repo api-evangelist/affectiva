@@ -1,0 +1,32 @@
+generated: '2026-09-12'
+method: probed
+source: live responses from https://index.affectiva.com + openapi/affectiva-eaas-*.json
+description: >-
+  NO RATE LIMITS ARE PUBLISHED. The thirteen Swagger 2.0 contracts declare no 429 response on
+  any of the 51 operations, and no live response carried a rate-limit header. Affectiva's
+  documentation hosts that might have stated a policy are gone or gated
+  (knowledge.affectiva.com returns a readme.io "Not Yet Active" placeholder;
+  developer.affectiva.com 302s to an Atlassian login), so an honest zero is recorded rather
+  than an inferred number.
+limit_count: 0
+limits: []
+headers:
+  x_ratelimit: false
+  ratelimit_draft: false
+  retry_after: false
+  observed: []
+  note: >-
+    Headers actually returned by index.affectiva.com are Cache-Control, Content-Type,
+    Strict-Transport-Security, WWW-Authenticate, X-Request-Id and X-Runtime. No RateLimit-*,
+    X-RateLimit-* or Retry-After among them.
+exhaustion_status: null
+evidence:
+- url: https://index.affectiva.com/jobs
+  status: 401
+  finding: 'Headers observed 2026-09-12: WWW-Authenticate: Basic realm="Affectiva Facial Coding API"; X-Request-Id; X-Runtime. No rate-limit signalling.'
+- url: https://index.affectiva.com/data_collection_projects
+  status: 401
+  finding: Same header set; no rate-limit signalling.
+- url: https://index.affectiva.com/swagger/templates/jobs.json
+  status: 200
+  finding: Contract declares responses 200/201/400/404/405/422 only — no 429 anywhere in the spec set.

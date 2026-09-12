@@ -1,0 +1,80 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements — Affectiva EaaS data_collection_projects
+  version: 1.0.0
+extends: openapi/affectiva-eaas-data_collection_projects.json
+x-generated: '2026-09-12'
+x-method: generated
+x-source: openapi/affectiva-eaas-data_collection_projects.json
+x-note: Non-destructive enhancements to the verbatim Affectiva contract. The published document ships no operationIds,
+  no host, no contact and no 401 response even though every operation is behind HTTP Basic. These actions record
+  what we observed; the original is never mutated.
+actions:
+- target: $.info
+  description: Name the operator and the live host the contract omits.
+  update:
+    contact:
+      name: Affectiva (Smart Eye / iMotions)
+      url: https://www.affectiva.com/contact-us/
+    x-api-evangelist-note: Contract harvested verbatim from https://index.affectiva.com/swagger/templates/data_collection_projects.json
+      on 2026-09-12.
+- target: $
+  description: Record the host the Swagger UI actually calls; the published document sets only basePath "/".
+  update:
+    host: index.affectiva.com
+    x-observed-base-url: https://index.affectiva.com
+- target: $.paths['/data_collection_projects'].get
+  description: Add the missing operationId for GET /data_collection_projects.
+  update:
+    operationId: list_data_collection_projects
+- target: $.paths['/data_collection_projects'].get
+  description: Declare the 401 the live API actually returns; the published contract omits it on every operation.
+  update:
+    responses:
+      '401':
+        description: Unauthorized. HTTP Basic credentials required; realm "Affectiva Facial Coding API". Observed
+          live 2026-09-12.
+- target: $.paths['/data_collection_projects'].post
+  description: Add the missing operationId for POST /data_collection_projects.
+  update:
+    operationId: create_data_collection_projects
+- target: $.paths['/data_collection_projects'].post
+  description: Declare the 401 the live API actually returns; the published contract omits it on every operation.
+  update:
+    responses:
+      '401':
+        description: Unauthorized. HTTP Basic credentials required; realm "Affectiva Facial Coding API". Observed
+          live 2026-09-12.
+- target: $.paths['/data_collection_projects/{id}'].get
+  description: Add the missing operationId for GET /data_collection_projects/{id}.
+  update:
+    operationId: get_data_collection_projects
+- target: $.paths['/data_collection_projects/{id}'].get
+  description: Declare the 401 the live API actually returns; the published contract omits it on every operation.
+  update:
+    responses:
+      '401':
+        description: Unauthorized. HTTP Basic credentials required; realm "Affectiva Facial Coding API". Observed
+          live 2026-09-12.
+- target: $.paths['/data_collection_projects/{id}'].put
+  description: Add the missing operationId for PUT /data_collection_projects/{id}.
+  update:
+    operationId: update_data_collection_projects
+- target: $.paths['/data_collection_projects/{id}'].put
+  description: Declare the 401 the live API actually returns; the published contract omits it on every operation.
+  update:
+    responses:
+      '401':
+        description: Unauthorized. HTTP Basic credentials required; realm "Affectiva Facial Coding API". Observed
+          live 2026-09-12.
+- target: $.paths['/data_collection_projects/{id}'].delete
+  description: Add the missing operationId for DELETE /data_collection_projects/{id}.
+  update:
+    operationId: delete_data_collection_projects
+- target: $.paths['/data_collection_projects/{id}'].delete
+  description: Declare the 401 the live API actually returns; the published contract omits it on every operation.
+  update:
+    responses:
+      '401':
+        description: Unauthorized. HTTP Basic credentials required; realm "Affectiva Facial Coding API". Observed
+          live 2026-09-12.

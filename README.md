@@ -64,5 +64,12 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Affectiva is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/affectiva_stock/
+Affectiva is an Emotion AI company founded out of the MIT Media Lab and headquartered in Boston, Massachusetts. Its AFFDEX science analyzes spontaneous facial expressions and speech to measure emotion, attention and cognitive state, trained on what the company describes as the world's largest emotion data set. The technology is sold into media analytics (ad testing, entertainment content testing, qualitative research), in-cabin automotive sensing, and academic behavioral research. Affectiva was acquired by Smart Eye AB in 2021 and its commercial product line has since been folded into the iMotions brand.
+
+The developer surface profiled here is the **Affectiva Facial Coding API** ("EaaS" — Emotion as a Service): thirteen Swagger 2.0 contracts totalling 51 operations, served from the Swagger UI at <https://index.affectiva.com/swagger/index.html> and harvested verbatim into `openapi/`. The live API answers `WWW-Authenticate: Basic realm="Affectiva Facial Coding API"`, which is also the ownership proof for the contract set.
+
+- Website: <https://www.affectiva.com/>
+- API reference: <https://index.affectiva.com/swagger/index.html>
+- Console sign-in: <https://index.affectiva.com/users/sign_in>
+- Emotion SDK for the Web (affdex.js 3.2.1, last built 2018-07-24): <https://download.affectiva.com/js/3.2.1/affdex.js>
+- GitHub: <https://github.com/affectiva>

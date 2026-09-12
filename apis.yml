@@ -1,23 +1,181 @@
 aid: affectiva
 name: Affectiva
-description: 'Affectiva is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: Affectiva is an Emotion AI company founded out of the MIT Media Lab and headquartered in
+  Boston, Massachusetts. Its AFFDEX science analyzes spontaneous facial expressions and speech to measure
+  emotion, attention and cognitive state, trained on what the company describes as the world's largest
+  emotion data set — 17.4M face videos and 8B facial frames gathered across 90 countries over 18 years.
+  The technology is sold into media analytics (ad testing, entertainment content testing, qualitative
+  research), in-cabin automotive sensing for driver and occupant monitoring, and academic behavioral research.
+  Affectiva was acquired by Smart Eye AB in 2021 and its commercial product line has since been folded
+  into the iMotions brand. Its developer surface is the Affectiva Facial Coding API — a cloud "EaaS" (Emotion
+  as a Service) platform documented by thirteen Swagger 2.0 contracts at index.affectiva.com/swagger,
+  plus the browser-side affdex.js Emotion SDK distributed from the company CDN and an Automotive SDK available
+  on request.
 url: https://raw.githubusercontent.com/api-evangelist/affectiva/refs/heads/main/apis.yml
+image: https://www.affectiva.com/wp-content/uploads/2024/01/SoMe-Graphics-Zeus-Announcement.png
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-09-12'
 modified: '2026-09-12'
 tags:
 - Company
-apis: []
+- Emotion AI
+- Artificial Intelligence
+- Machine Learning
+- Computer Vision
+- Facial Coding
+- Facial Expression Analysis
+- Media Analytics
+- Market Research
+- Automotive
+- Driver Monitoring
+- Video Analysis
+- Affective Computing
+apis:
+- aid: affectiva-facial-coding-api
+  name: Affectiva Facial Coding API
+  description: The Affectiva Facial Coding API — branded internally as "EaaS" (Emotion as a Service) —
+    is the cloud service behind Affectiva's facial-coding products. A consumer uploads video and receives
+    frame-by-frame expression and Action Unit metrics as JSON or CSV. The published contract surface is
+    thirteen Swagger 2.0 documents served from the Swagger UI at index.affectiva.com/swagger covering
+    data collection projects, jobs, entries and their annotations, representations and representation
+    storages, event configs and event instances, frame sampling jobs, video frames, video segments, and
+    the labeling jobs / tasks / annotations trio. The live API answers HTTP Basic with WWW-Authenticate
+    realm "Affectiva Facial Coding API"; all 51 operations require an account and there is no public self-service
+    sign-up.
+  humanURL: https://index.affectiva.com/swagger/index.html
+  baseURL: https://index.affectiva.com
+  tags:
+  - Emotion AI
+  - Facial Coding
+  - Video Analysis
+  - Machine Learning
+  properties:
+  - type: OpenAPI
+    url: openapi/affectiva-eaas-data_collection_projects.json
+  - type: OpenAPI
+    url: openapi/affectiva-eaas-jobs.json
+  - type: OpenAPI
+    url: openapi/affectiva-eaas-entries.json
+  - type: OpenAPI
+    url: openapi/affectiva-eaas-representations.json
+  - type: OpenAPI
+    url: openapi/affectiva-eaas-representation_storages.json
+  - type: OpenAPI
+    url: openapi/affectiva-eaas-event_configs.json
+  - type: OpenAPI
+    url: openapi/affectiva-eaas-event_instances.json
+  - type: OpenAPI
+    url: openapi/affectiva-eaas-frame_sampling_jobs.json
+  - type: OpenAPI
+    url: openapi/affectiva-eaas-video_frames.json
+  - type: OpenAPI
+    url: openapi/affectiva-eaas-video_segments.json
+  - type: OpenAPI
+    url: openapi/affectiva-eaas-labeling_jobs.json
+  - type: OpenAPI
+    url: openapi/affectiva-eaas-labeling_tasks.json
+  - type: OpenAPI
+    url: openapi/affectiva-eaas-labeling_job_annotations.json
+  - type: APIReference
+    url: https://index.affectiva.com/swagger/index.html
+  - type: Login
+    url: https://index.affectiva.com/users/sign_in
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/affectiva-domain-security.yml
+- type: Authentication
+  url: authentication/affectiva-authentication.yml
 - type: Website
-  url: https://forgeglobal.com/affectiva_stock/
+  url: https://www.affectiva.com/
+- type: APIReference
+  url: https://index.affectiva.com/swagger/index.html
+- type: Documentation
+  url: https://imotions.com/support/document-library/affectiva-for-facial-expression-analysis/
+- type: Login
+  url: https://index.affectiva.com/users/sign_in
+- type: Support
+  url: https://www.affectiva.com/contact-us/
+- type: Blog
+  url: https://blog.affectiva.com/
+- type: GitHubOrganization
+  url: https://github.com/affectiva
+- type: TermsOfService
+  url: https://www.affectiva.com/terms-of-service/
+- type: PrivacyPolicy
+  url: https://www.affectiva.com/privacy-policy/
+- type: Packages
+  url: packages/affectiva-packages.yml
+- type: SDKs
+  url: packages/affectiva-packages.yml
+- type: LLMsTxt
+  url: llms/affectiva-llms.txt
+- type: X-MCPServerCandidate
+  url: mcp/affectiva-mcp.yml
+- type: Conformance
+  url: conformance/affectiva-conformance.yml
+- type: ErrorCatalog
+  url: errors/affectiva-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/affectiva-lifecycle.yml
+- type: Conventions
+  url: conventions/affectiva-conventions.yml
+- type: DataModel
+  url: data-model/affectiva-data-model.yml
+- type: Plans
+  url: plans/affectiva-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/affectiva-rate-limits.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Overlay
+  url: overlays/affectiva-eaas-data_collection_projects-overlay.yaml
+- type: Overlay
+  url: overlays/affectiva-eaas-entries-overlay.yaml
+- type: Overlay
+  url: overlays/affectiva-eaas-event_configs-overlay.yaml
+- type: Overlay
+  url: overlays/affectiva-eaas-event_instances-overlay.yaml
+- type: Overlay
+  url: overlays/affectiva-eaas-frame_sampling_jobs-overlay.yaml
+- type: Overlay
+  url: overlays/affectiva-eaas-jobs-overlay.yaml
+- type: Overlay
+  url: overlays/affectiva-eaas-labeling_job_annotations-overlay.yaml
+- type: Overlay
+  url: overlays/affectiva-eaas-labeling_jobs-overlay.yaml
+- type: Overlay
+  url: overlays/affectiva-eaas-labeling_tasks-overlay.yaml
+- type: Overlay
+  url: overlays/affectiva-eaas-representation_storages-overlay.yaml
+- type: Overlay
+  url: overlays/affectiva-eaas-representations-overlay.yaml
+- type: Overlay
+  url: overlays/affectiva-eaas-video_frames-overlay.yaml
+- type: Overlay
+  url: overlays/affectiva-eaas-video_segments-overlay.yaml
+x-enrichment:
+  date: '2026-09-12'
+  status: enriched
+  artifacts_added: 36
+  pass: local-v3
+x-spec-provenance:
+  discovered: https://index.affectiva.com/swagger/index.html
+  fetched: '2026-09-12'
+  ownership_check: 'The thirteen Swagger 2.0 documents are served from index.affectiva.com — a host inside
+    Affectiva''s own registrable domain — and the live API at that host answers every request with WWW-Authenticate:
+    Basic realm="Affectiva Facial Coding API", naming the provider in the contract''s own runtime behaviour.
+    No servers[]/host, info.contact or terms field in any document points at another company. The console
+    sign-in page is branded "iMotions Developer Platform" because Affectiva''s product line was folded
+    into its Smart Eye sibling iMotions after the 2021 acquisition — affectiva.com''s own product, solutions
+    and contact pages 301 to imotions.com — so the sibling branding is the documented parent-brand case,
+    not a Leadpages-shaped mis-attribution.'
+  documents: 13
+  operations: 51
+  version: swagger 2.0

@@ -1,0 +1,48 @@
+generated: '2026-09-12'
+method: probed
+source: openapi/affectiva-eaas-data_collection_projects.json, openapi/affectiva-eaas-entries.json, openapi/affectiva-eaas-event_configs.json,
+  openapi/affectiva-eaas-event_instances.json, openapi/affectiva-eaas-frame_sampling_jobs.json, openapi/affectiva-eaas-jobs.json,
+  openapi/affectiva-eaas-labeling_job_annotations.json, openapi/affectiva-eaas-labeling_jobs.json, openapi/affectiva-eaas-labeling_tasks.json,
+  openapi/affectiva-eaas-representation_storages.json, openapi/affectiva-eaas-representations.json, openapi/affectiva-eaas-video_frames.json
+  ... + live 401 challenge from https://index.affectiva.com/jobs
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  sources:
+  - openapi/affectiva-eaas-data_collection_projects.json
+  - openapi/affectiva-eaas-entries.json
+  - openapi/affectiva-eaas-event_configs.json
+  - openapi/affectiva-eaas-event_instances.json
+  - openapi/affectiva-eaas-frame_sampling_jobs.json
+  - openapi/affectiva-eaas-jobs.json
+  - openapi/affectiva-eaas-labeling_job_annotations.json
+  - openapi/affectiva-eaas-labeling_jobs.json
+  - openapi/affectiva-eaas-labeling_tasks.json
+  - openapi/affectiva-eaas-representation_storages.json
+  - openapi/affectiva-eaas-representations.json
+  - openapi/affectiva-eaas-video_frames.json
+  - openapi/affectiva-eaas-video_segments.json
+observed:
+  url: https://index.affectiva.com/jobs
+  http_status: 401
+  www_authenticate: Basic realm="Affectiva Facial Coding API"
+  body: '{"error":"Please login to continue."}'
+  fetched: '2026-09-12'
+  note: 'The live API confirms the contract: HTTP Basic across the whole surface, one realm, no bearer
+    token, no API key header and no OAuth. This probe is also the OWNERSHIP proof for the spec set — the
+    realm string names Affectiva explicitly on a host in Affectiva''s own registrable domain.'
+gaps:
+- No operation in any of the thirteen documents declares a 401 or 403 response, despite blanket enforcement.
+- No scopes, roles or permissions surface exists — HTTP Basic carries no authorization model.
+- Credentials are issued by sales; https://index.affectiva.com/users/sign_up returns 404.
+- 'No public authentication documentation page: knowledge.affectiva.com returns a readme.io "Not Yet Active"
+  placeholder (401) and developer.affectiva.com 302s to an Atlassian login.'
+console:
+  url: https://index.affectiva.com/users/sign_in
+  http_status: 200
+  branding: The sign-in page is branded "iMotions Developer Platform" — iMotions is the Smart Eye sibling
+    brand Affectiva's product line was folded into.

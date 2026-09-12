@@ -1,0 +1,52 @@
+generated: '2026-09-12'
+method: derived
+source: openapi/affectiva-eaas-*.json + observed live response from https://index.affectiva.com/jobs
+description: >-
+  Error catalog derived from the 4xx/5xx responses declared across the thirteen published
+  Affectiva Facial Coding API (EaaS) Swagger 2.0 documents, plus the one error envelope that
+  could be observed live without credentials. Affectiva publishes no error-code reference
+  page, so titles are the spec's own `description` strings and nothing has been invented.
+format: none
+envelope:
+  shape: '{"error": "<message>"}'
+  content_type: application/json; charset=utf-8
+  evidence: >-
+    GET https://index.affectiva.com/jobs returned HTTP 401 with body
+    {"error":"Please login to continue."} on 2026-09-12.
+  note: >-
+    Not RFC 9457. The spec set declares no response schema for any error status — the
+    envelope above is the only structure evidence available, and it is undocumented.
+problem_types:
+- status: 400
+  title: Invalid ID supplied
+  occurrences: 22
+  remediation: The path identifier is not a valid integer. Every {id}/{entryID}/{jobID}/{projectID}/{representationID}/{storageID}/{configsID}/{instanceID}/{annotationID} parameter is typed integer.
+- status: 401
+  title: Please login to continue.
+  occurrences: 0
+  remediation: Send HTTP Basic credentials. Realm is "Affectiva Facial Coding API".
+  note: >-
+    OBSERVED LIVE BUT UNDOCUMENTED. Not one of the 51 operations declares a 401 response,
+    even though every operation requires authentication — the most significant gap in this
+    contract set.
+- status: 404
+  title: Resource not found
+  occurrences: 30
+  remediation: The addressed project, job, entry, representation, storage, event config, event instance, labeling job/task or annotation does not exist.
+- status: 405
+  title: Invalid input / method not allowed
+  occurrences: 6
+  remediation: Declared on the collection GETs (GET /jobs, GET /entries/{entryID}, GET /data_collection_projects and the nested collection reads).
+- status: 422
+  title: Unprocessable entity — validation failed
+  occurrences: 22
+  remediation: The request body or form data failed model validation. Declared on every create and update operation.
+- status: 500
+  title: Internal server error
+  occurrences: 8
+  remediation: Declared on POST /frame_sampling_jobs, the video_frames / video_segments creates and the labeling_jobs / labeling_tasks / labeling_job_annotations writes.
+gaps:
+- No 401 or 403 declared on any operation despite blanket HTTP Basic enforcement.
+- No 429 declared; no rate-limit behaviour documented anywhere.
+- No error response SCHEMA declared — only status codes and prose descriptions.
+- No machine-readable error code vocabulary; the live envelope carries a human string only.

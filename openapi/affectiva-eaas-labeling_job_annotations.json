@@ -1,0 +1,163 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a documentation for Eaas api-experiments",
+    "version": "0.1.0",
+    "title": "Eaas labeling jobs annotations api's",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "labeling_job_annotations",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "http://swagger.io"
+      }
+    }
+  ],
+  "schemes": ["https", "http"],
+  "paths": {
+    "/labeling_job_annotations": {
+      "post": {
+        "tags": ["labeling_job_annotations"],
+        "summary": "New labeling job annotation object",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "labeling_job_annotation",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": ["labeling_job_id", "label_name", "label_type"],
+              "properties": {
+                "labeling_job_id": {
+                  "type": "integer",
+                  "format": "int",
+                  "description": "Labeling job id",
+                  "example": 1
+                },
+                "label_name": {
+                  "description": "Label name",
+                  "type": "string",
+                  "example": "project"
+                },
+                "label_type": {
+                  "description": "Label name",
+                  "type": "string"
+                },
+                "extra_config": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created Successfully"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      },
+      "patch": {
+        "tags": ["labeling_job_annotations"],
+        "summary": "Update labeling job annotation object",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "labeling_job_id",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "partial_data",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "label_name": {
+                  "description": "data will be updated",
+                  "type": "string",
+                  "example": "pupil_size|bodypoints|objects"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Updated successfully"
+          },
+          "422": {
+            "description": "Unprocessable Entity"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": ["labeling_job_annotations"],
+        "summary": "Delete labeling job annotation object",
+        "description": "Delete labeling job annotation object using id",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "labeling_job_id",
+            "in": "query",
+            "description": "Labeling job annotation object id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Not content"
+          },
+          "404": {
+            "description": "Labeling job not found"
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "basicAuth": {
+      "type": "basic"
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}

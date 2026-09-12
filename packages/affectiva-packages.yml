@@ -1,0 +1,99 @@
+generated: '2026-09-12'
+method: searched
+source: https://download.affectiva.com/js/3.2.1/affdex.js
+description: >-
+  Affectiva client libraries. NOTHING AFFECTIVA PUBLISHES IS IN A PUBLIC PACKAGE REGISTRY.
+  npm (affdex, affdex-sdk, affectiva), PyPI (affectiva, affdex, affvisionpy), Maven Central
+  (g:com.affectiva and a free-text search for "affectiva"/"affdex") and NuGet were all
+  queried unauthenticated on 2026-09-12 and returned 404 / zero first-party results. The one
+  live first-party distribution is the browser Emotion SDK, affdex.js, served from the
+  company's own CloudFront/S3 CDN at download.affectiva.com under PINNED version paths — so
+  it has no registry metadata endpoint and its version and date were read from the file
+  itself (affdex.version) and the CDN Last-Modified header. The Automotive SDK and the
+  native Emotion SDKs are distributed only on request under a commercial license.
+packages:
+- language: javascript
+  registry: cdn
+  name: affdex.js
+  url: https://download.affectiva.com/js/3.2.1/affdex.js
+  install: '<script src="https://download.affectiva.com/js/3.2.1/affdex.js"></script>'
+  official: true
+  version: 3.2.1.583-b86b1d2
+  published: '2018-07-24'
+  http_status: 200
+  note: >-
+    Affectiva Emotion SDK for the Web (affdex.js). Version read from the file's own
+    `affdex.version` constant; `published` is the CDN Last-Modified header
+    (Tue, 24 Jul 2018 13:53:27 GMT) observed on 2026-09-12 — the distribution has not
+    changed in eight years, which is the clearest decay signal in this profile. The path is
+    version-PINNED, so a consumer can tell exactly what they are getting. The bundle loads
+    two sibling assets from the same directory, affdex-worker.js and adapter-1.4.0.js.
+- language: javascript
+  registry: cdn
+  name: affdex.js (3.2)
+  url: https://download.affectiva.com/js/3.2/affdex.js
+  install: '<script src="https://download.affectiva.com/js/3.2/affdex.js"></script>'
+  official: true
+  version: '3.2'
+  published: null
+  http_status: 200
+  note: >-
+    Prior pinned release still served. version/published not separately recorded — the
+    file was confirmed live (HTTP 200, 12,042 bytes) but only 3.2.1 was downloaded and read.
+- language: javascript
+  registry: cdn
+  name: affdex.js (3.1)
+  url: https://download.affectiva.com/js/3.1/affdex.js
+  official: true
+  version: '3.1'
+  published: null
+  http_status: 200
+  note: >-
+    Oldest pinned release still served (HTTP 200, 12,034 bytes). No unpinned "latest" alias
+    exists — https://download.affectiva.com/js/latest/affdex.js returns 403, as do
+    /js/3.0/, /js/3.3/ and /js/4.0/, so 3.2.1 is the newest published build.
+- language: java
+  registry: null
+  name: Affectiva Automotive SDK (Android / Linux aarch64)
+  url: https://github.com/affectiva/auto-sdk-android-samples
+  official: true
+  version: '1.2'
+  published: null
+  http_status: 200
+  note: >-
+    Not distributed through any registry. The company's own sample repository states "The
+    Automotive SDK is available upon request. To get access, please contact us" and links
+    documentation at https://auto.affectiva.com, which now 302s to an Atlassian Confluence
+    login. Version 1.2 is the number named in that repository's README; no release date is
+    published. Maven Central holds no com.affectiva artifacts.
+unofficial_seen:
+- registry: nuget
+  name: Affdex
+  version: 1.0.0
+  published: '2017-11-12'
+  official: false
+  note: Third-party wrapper published by an unrelated author; recorded so it is not mistaken for first-party.
+- registry: npm
+  name: affdex-licode
+  version: 0.0.27
+  published: '2018-03-27'
+  official: false
+  note: >-
+    Published by an individual account, not the Affectiva org; a module for the licode
+    WebRTC stack the company forked. Not a client SDK.
+registries_checked:
+- registry: npm
+  queries: [affdex, affdex-sdk, affectiva, affdex.js, 'search: affdex']
+  first_party_hits: 0
+- registry: pypi
+  queries: [affectiva, affdex, affvisionpy]
+  first_party_hits: 0
+- registry: maven-central
+  queries: ['g:com.affectiva', affectiva, affdex]
+  first_party_hits: 0
+- registry: nuget
+  queries: [affectiva]
+  first_party_hits: 0
+- registry: jsdelivr
+  queries: [affdex]
+  first_party_hits: 0

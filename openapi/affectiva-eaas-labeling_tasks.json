@@ -1,0 +1,223 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a documentation for Eaas api-experiments",
+        "version": "0.1.0",
+        "title": "Eaas labeling tasks",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "labeling_tasks",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http://swagger.io"
+            }
+        }
+    ],
+    "schemes": [
+        "https",
+        "http"
+    ],
+    "paths": {
+        "/labeling_tasks": {
+            "post": {
+                "tags": [
+                    "labeling_tasks"
+                ],
+                "summary": "New labeling tasks object",
+                "description": "Each  entry has a labeling task sent to vendor to be annotated",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "labeling_tasks",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "entry_id",
+                                "labeling_job_id",
+                                "task_id"
+                            ],
+                            "properties": {
+                                "entry_id": {
+                                    "type": "integer"
+                                },
+                                "labeling_job_id": {
+                                    "type": "integer"
+                                },
+                                "task_id": {
+                                    "description": "descripes the labeling task",
+                                    "type": "string",
+                                    "example": "smile"
+                                },
+                                "status": {
+                                    "type": "string",
+                                    "default": "pending",
+                                    "enum": ["pending", "accepted", "rejected"]
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created Successfully"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ]
+            }
+        },
+        "/labeling_tasks/{id}": {
+            "get": {
+                "tags": [
+                    "labeling_tasks"
+                ],
+                "summary": "Delete labeling task object",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Labeling task object id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "204": {
+                        "description": "Not content"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                },
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "labeling_tasks"
+                ],
+                "summary": "Update labeling tasks object",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Labeling task object id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "in": "body",
+                        "name": "labeling_tasks",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "status": {
+                                    "type": "string",
+                                    "default": "pending",
+                                    "enum": ["pending", "accepted", "rejected"]
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Updated Successfully"
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "labeling_tasks"
+                ],
+                "summary": "Delete labeling task object",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Labeling task object id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Not content"
+                    },
+                    "404": {
+                        "description": "Labeling job not found"
+                    }
+                },
+                "security": [
+                    {
+                        "basicAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "securityDefinitions": {
+        "basicAuth": {
+            "type": "basic"
+        }
+    },
+    "externalDocs": {
+        "description": "Find out more about Swagger",
+        "url": "http://swagger.io"
+    }
+}

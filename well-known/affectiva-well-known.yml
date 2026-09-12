@@ -1,0 +1,76 @@
+generated: '2026-09-12'
+method: probed
+source: live HTTPS probes of every host this record knows, 2026-09-12
+description: >-
+  Every named /.well-known/ path probed on the registrable domain, www, the API baseURL host,
+  the CDN host and the console host. NOTHING WAS SERVED. Affectiva publishes no security.txt,
+  no OpenID/OAuth discovery document, no api-catalog, no ai-plugin.json and no agent card on
+  any host. No WellKnown or SecurityTxt pointer is wired into apis.yml, because this file
+  records an absence, not a presence. The 403s on download.affectiva.com are the S3 bucket
+  refusing anonymous key listing (application/xml AccessDenied), not a served document.
+hosts:
+- host: www.affectiva.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: affectiva.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: index.affectiva.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: download.affectiva.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+    note: S3 AccessDenied XML, not a document.
+  - path: /.well-known/openid-configuration
+    status: 403
+  - path: /.well-known/oauth-authorization-server
+    status: 403
+  - path: /.well-known/api-catalog
+    status: 403
+  - path: /.well-known/ai-plugin.json
+    status: 403
+  - path: /.well-known/agent-card.json
+    status: 403
+  - path: /.well-known/agent.json
+    status: 403

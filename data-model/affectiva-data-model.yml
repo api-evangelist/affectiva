@@ -1,0 +1,192 @@
+generated: '2026-09-12'
+method: derived
+source: openapi/affectiva-eaas-*.json
+description: Entity-relationship graph of the Affectiva Facial Coding API (EaaS), derived entirely from
+  the URL nesting and path parameters of the thirteen published Swagger 2.0 documents. The contracts declare
+  NO `definitions` block — not one of the thirteen documents ships a schema — so field-level structure
+  could not be derived and is recorded as absent rather than guessed. Relationships below are read off
+  path containment and the integer id parameters, which is the only structural evidence the provider publishes.
+caveat: Zero components/definitions across 51 operations. Request bodies are declared as untyped `body`
+  or `formData` parameters (entry, job, event_configs, labeling_tasks, partial_data, media as file). A
+  consumer cannot learn the shape of any object from this contract.
+entities:
+- name: data_collection_project
+  id_field: id
+  id_type: integer
+  operations:
+  - GET /data_collection_projects
+  - POST /data_collection_projects
+  - GET /data_collection_projects/{id}
+  - PUT /data_collection_projects/{id}
+  - DELETE /data_collection_projects/{id}
+  relationships:
+  - has_many: event_config
+    via: projectID
+    evidence: /data_collection_projects/{projectID}/event_configs
+- name: event_config
+  id_field: configsID
+  id_type: integer
+  operations:
+  - GET /data_collection_projects/{projectID}/event_configs
+  - POST /data_collection_projects/{projectID}/event_configs
+  - GET /data_collection_projects/{projectID}/event_configs/{configsID}
+  - PUT /data_collection_projects/{projectID}/event_configs/{configsID}
+  - DELETE /data_collection_projects/{projectID}/event_configs/{configsID}
+  relationships:
+  - belongs_to: data_collection_project
+    via: projectID
+  - has_many: event_instance
+    via: configID
+    evidence: /data_collection_projects/{projectID}/event_configs/{configID}/event_instances
+- name: event_instance
+  id_field: instanceID
+  id_type: integer
+  operations:
+  - GET /data_collection_projects/{projectID}/event_configs/{configID}/event_instances
+  - POST /data_collection_projects/{projectID}/event_configs/{configID}/event_instances
+  - GET /data_collection_projects/{projectID}/event_configs/{configsID}/event_instances/{instanceID}
+  - PUT /data_collection_projects/{projectID}/event_configs/{configsID}/event_instances/{instanceID}
+  - DELETE /data_collection_projects/{projectID}/event_configs/{configsID}/event_instances/{instanceID}
+  relationships:
+  - belongs_to: event_config
+    via: configID
+- name: entry
+  id_field: entryID
+  id_type: integer
+  operations:
+  - POST /entries
+  - GET /entries/{entryID}
+  - PUT /entries/{entryID}
+  - DELETE /entries/{entryID}
+  - GET /entries/search_by_annotation
+  relationships:
+  - has_many: annotation
+    via: entryID
+  - has_many: representation
+    via: entryID
+  note: Carries media — entry[media] is a file upload with an entry[storage_type] discriminator.
+- name: annotation
+  id_field: annotationID
+  id_type: integer
+  operations:
+  - POST /entries/{entryID}/annotations
+  - PUT /entries/{entryID}/annotations/{annotationID}
+  - DELETE /entries/{entryID}/annotations/{annotationID}
+  relationships:
+  - belongs_to: entry
+    via: entryID
+  note: Queryable by source/key/value through GET /entries/search_by_annotation — the metadata mechanism
+    for the whole model.
+- name: representation
+  id_field: representationID
+  id_type: integer
+  operations:
+  - POST /entries/{entryID}/representations
+  - GET /entries/{entryID}/representations/{representationID}
+  - PUT /entries/{entryID}/representations/{representationID}
+  - DELETE /entries/{entryID}/representations/{representationID}
+  - GET /entries/{entryID}/representations/{representationID}/media
+  relationships:
+  - belongs_to: entry
+    via: entryID
+  - has_many: representation_storage
+    via: representationID
+- name: representation_storage
+  id_field: storageID
+  id_type: integer
+  operations:
+  - GET /entries/{entryID}/representations/{representationID}/representation_storages
+  - POST /entries/{entryID}/representations/{representationID}/representation_storages
+  - GET /entries/{entryID}/representations/{representationID}/representation_storages/{storageID}
+  - PUT /entries/{entryID}/representations/{representationID}/representation_storages/{storageID}
+  - DELETE /entries/{entryID}/representations/{representationID}/representation_storages/{storageID}
+  relationships:
+  - belongs_to: representation
+    via: representationID
+- name: job
+  id_field: jobID
+  id_type: integer
+  operations:
+  - GET /jobs
+  - POST /jobs
+  - GET /jobs/{jobID}
+  - PUT /jobs/{jobID}
+  note: The analysis unit. Created with entry_job[input] (file) or entry_job[input_url] (string), plus
+    entry_job[name], entry_job[storage_type], entry_job[status] and entry_job[result]. No DELETE and no
+    cancel operation is published.
+- name: frame_sampling_job
+  id_field: null
+  operations:
+  - POST /frame_sampling_jobs
+  relationships:
+  - produces: video_frame
+  - produces: video_segment
+  note: Create-only — the contract publishes no read, update or delete for this entity.
+- name: video_frame
+  id_field: id
+  id_type: integer
+  operations:
+  - POST /video_frames
+  - DELETE /video_frames/{id}
+- name: video_segment
+  id_field: id
+  id_type: integer
+  operations:
+  - POST /video_segments
+  - DELETE /video_segments/{id}
+- name: labeling_job
+  id_field: id
+  id_type: integer
+  operations:
+  - POST /labeling_jobs
+  - DELETE /labeling_jobs/{id}
+  relationships:
+  - has_many: labeling_task
+    via: labeling_job_id
+  - has_many: labeling_job_annotation
+    via: labeling_job_id
+- name: labeling_task
+  id_field: id
+  id_type: integer
+  operations:
+  - POST /labeling_tasks
+  - GET /labeling_tasks/{id}
+  - PUT /labeling_tasks/{id}
+  - DELETE /labeling_tasks/{id}
+  relationships:
+  - belongs_to: labeling_job
+    via: labeling_job_id
+- name: labeling_job_annotation
+  id_field: null
+  operations:
+  - POST /labeling_job_annotations
+  - PATCH /labeling_job_annotations
+  - DELETE /labeling_job_annotations
+  relationships:
+  - belongs_to: labeling_job
+    via: labeling_job_id
+  note: Addressed by a labeling_job_id query parameter rather than by its own path id — the only entity
+    in the model with no id in its URL.
+clusters:
+- name: Data collection
+  entities:
+  - data_collection_project
+  - event_config
+  - event_instance
+- name: Media and metrics
+  entities:
+  - entry
+  - annotation
+  - representation
+  - representation_storage
+- name: Analysis
+  entities:
+  - job
+  - frame_sampling_job
+  - video_frame
+  - video_segment
+- name: Human labeling
+  entities:
+  - labeling_job
+  - labeling_task
+  - labeling_job_annotation

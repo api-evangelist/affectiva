@@ -1,0 +1,30 @@
+generated: '2026-09-12'
+method: searched
+source: https://imotions.com/products/affectiva-facial-coding-api/
+description: >-
+  AFFECTIVA PUBLISHES NO PLANS. There is no pricing page on affectiva.com — the site has no
+  /pricing route in its own sitemap — and the product pages 301 into imotions.com, where the
+  Affectiva Facial Coding API page describes a "pay-per-use" model but names no price, no
+  quota, no tier and no self-service sign-up. The page's only call to action is "I am
+  interested" and "Reach out to our support team". index.affectiva.com/users/sign_up returns
+  404, so there is no route to an account without talking to sales.
+plan_count: 0
+currency: null
+billing_model: >-
+  Pay-per-use for the cloud Facial Coding API, and an annual commercial licence for the
+  Emotion SDK / Automotive SDK — both quoted on request. No published figure could be
+  verified from a first-party page, so none is recorded here.
+plans: []
+evidence:
+- url: https://imotions.com/products/affectiva-facial-coding-api/
+  status: 200
+  finding: '"Pay-per-use pricing" stated; no price, tier or quota published. CTA is a contact form.'
+- url: https://www.affectiva.com/product/emotion-sdk/
+  status: 301
+  finding: Redirects to https://imotions.com/products/affectiva-facial-coding-sdk/ — Affectiva no longer hosts its own SDK product page.
+- url: https://index.affectiva.com/users/sign_up
+  status: 404
+  finding: No self-service registration. The console offers sign-in only.
+- url: https://www.affectiva.com/contact-us-commercial-license/
+  status: 200
+  finding: A commercial-licence contact form is the documented route to access.
