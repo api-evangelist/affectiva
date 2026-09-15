@@ -22,6 +22,20 @@ tags:
 - Company
 - Emotion AI
 - Artificial Intelligence
+- Machine-Learning
+- Computer-Vision
+- Facial Coding
+- Facial Expression Analysis
+- Media Analytics
+- Market Research
+- Automotive
+- Driver Monitoring
+- Video Analysis
+- Affective Computing
+tags_raw:
+- Company
+- Emotion AI
+- Artificial Intelligence
 - Machine Learning
 - Computer Vision
 - Facial Coding
@@ -33,7 +47,7 @@ tags:
 - Video Analysis
 - Affective Computing
 apis:
-- aid: affectiva-facial-coding-api
+- aid: affectiva:affectiva-facial-coding-api
   name: Affectiva Facial Coding API
   description: The Affectiva Facial Coding API — branded internally as "EaaS" (Emotion as a Service) —
     is the cloud service behind Affectiva's facial-coding products. A consumer uploads video and receives
@@ -47,6 +61,11 @@ apis:
   humanURL: https://index.affectiva.com/swagger/index.html
   baseURL: https://index.affectiva.com
   tags:
+  - Emotion AI
+  - Facial Coding
+  - Video Analysis
+  - Machine-Learning
+  tags_raw:
   - Emotion AI
   - Facial Coding
   - Video Analysis
