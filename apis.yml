@@ -47,56 +47,201 @@ tags_raw:
 - Video Analysis
 - Affective Computing
 apis:
-- aid: affectiva:affectiva-facial-coding-api
-  name: Affectiva Facial Coding API
-  description: The Affectiva Facial Coding API — branded internally as "EaaS" (Emotion as a Service) —
-    is the cloud service behind Affectiva's facial-coding products. A consumer uploads video and receives
-    frame-by-frame expression and Action Unit metrics as JSON or CSV. The published contract surface is
-    thirteen Swagger 2.0 documents served from the Swagger UI at index.affectiva.com/swagger covering
-    data collection projects, jobs, entries and their annotations, representations and representation
-    storages, event configs and event instances, frame sampling jobs, video frames, video segments, and
-    the labeling jobs / tasks / annotations trio. The live API answers HTTP Basic with WWW-Authenticate
-    realm "Affectiva Facial Coding API"; all 51 operations require an account and there is no public self-service
-    sign-up.
+- aid: affectiva:affectiva-annotations-api
+  name: Affectiva Annotations API
+  description: The annotations API from Affectiva — 2 operation(s) for annotations.
   humanURL: https://index.affectiva.com/swagger/index.html
   baseURL: https://index.affectiva.com
   tags:
-  - Emotion AI
-  - Facial Coding
-  - Video Analysis
-  - Machine-Learning
-  tags_raw:
-  - Emotion AI
-  - Facial Coding
-  - Video Analysis
-  - Machine Learning
+  - annotations
   properties:
   - type: OpenAPI
-    url: openapi/affectiva-eaas-data_collection_projects.json
+    url: openapi/affectiva-annotations-api-openapi.yml
+  - type: APIReference
+    url: https://index.affectiva.com/swagger/index.html
+  - type: Login
+    url: https://index.affectiva.com/users/sign_in
+- aid: affectiva:affectiva-data-collection-projects-api
+  name: Affectiva data collection projects API
+  description: >-
+    The data collection projects API from Affectiva — 2 operation(s) for data collection projects.
+  humanURL: https://index.affectiva.com/swagger/index.html
+  baseURL: https://index.affectiva.com
+  tags:
+  - data collection projects
+  properties:
   - type: OpenAPI
-    url: openapi/affectiva-eaas-jobs.json
+    url: openapi/affectiva-data-collection-projects-api-openapi.yml
+  - type: APIReference
+    url: https://index.affectiva.com/swagger/index.html
+  - type: Login
+    url: https://index.affectiva.com/users/sign_in
+- aid: affectiva:affectiva-entries-api
+  name: Affectiva Entries API
+  description: The entries API from Affectiva — 3 operation(s) for entries.
+  humanURL: https://index.affectiva.com/swagger/index.html
+  baseURL: https://index.affectiva.com
+  tags:
+  - entries
+  properties:
   - type: OpenAPI
-    url: openapi/affectiva-eaas-entries.json
+    url: openapi/affectiva-entries-api-openapi.yml
+  - type: APIReference
+    url: https://index.affectiva.com/swagger/index.html
+  - type: Login
+    url: https://index.affectiva.com/users/sign_in
+- aid: affectiva:affectiva-event-configs-api
+  name: Affectiva event configs API
+  description: The event configs API from Affectiva — 2 operation(s) for event configs.
+  humanURL: https://index.affectiva.com/swagger/index.html
+  baseURL: https://index.affectiva.com
+  tags:
+  - event configs
+  properties:
   - type: OpenAPI
-    url: openapi/affectiva-eaas-representations.json
+    url: openapi/affectiva-event-configs-api-openapi.yml
+  - type: APIReference
+    url: https://index.affectiva.com/swagger/index.html
+  - type: Login
+    url: https://index.affectiva.com/users/sign_in
+- aid: affectiva:affectiva-event-instances-api
+  name: Affectiva event instances API
+  description: The event instances API from Affectiva — 2 operation(s) for event instances.
+  humanURL: https://index.affectiva.com/swagger/index.html
+  baseURL: https://index.affectiva.com
+  tags:
+  - event instances
+  properties:
   - type: OpenAPI
-    url: openapi/affectiva-eaas-representation_storages.json
+    url: openapi/affectiva-event-instances-api-openapi.yml
+  - type: APIReference
+    url: https://index.affectiva.com/swagger/index.html
+  - type: Login
+    url: https://index.affectiva.com/users/sign_in
+- aid: affectiva:affectiva-frame-sampling-jobs-api
+  name: Affectiva frame sampling jobs API
+  description: The frame sampling jobs API from Affectiva — 1 operation(s) for frame sampling jobs.
+  humanURL: https://index.affectiva.com/swagger/index.html
+  baseURL: https://index.affectiva.com
+  tags:
+  - frame sampling jobs
+  properties:
   - type: OpenAPI
-    url: openapi/affectiva-eaas-event_configs.json
+    url: openapi/affectiva-frame-sampling-jobs-api-openapi.yml
+  - type: APIReference
+    url: https://index.affectiva.com/swagger/index.html
+  - type: Login
+    url: https://index.affectiva.com/users/sign_in
+- aid: affectiva:affectiva-jobs-api
+  name: Affectiva Jobs API
+  description: Everything about your jobss
+  humanURL: https://index.affectiva.com/swagger/index.html
+  baseURL: https://index.affectiva.com
+  tags:
+  - jobs
+  properties:
   - type: OpenAPI
-    url: openapi/affectiva-eaas-event_instances.json
+    url: openapi/affectiva-jobs-api-openapi.yml
+  - type: APIReference
+    url: https://index.affectiva.com/swagger/index.html
+  - type: Login
+    url: https://index.affectiva.com/users/sign_in
+- aid: affectiva:affectiva-labeling-job-annotations-api
+  name: Affectiva Labeling Job Annotations API
+  description: >-
+    The labeling_job_annotations API from Affectiva — 1 operation(s) for labeling_job_annotations.
+  humanURL: https://index.affectiva.com/swagger/index.html
+  baseURL: https://index.affectiva.com
+  tags:
+  - labeling_job_annotations
+  properties:
   - type: OpenAPI
-    url: openapi/affectiva-eaas-frame_sampling_jobs.json
+    url: openapi/affectiva-labeling-job-annotations-api-openapi.yml
+  - type: APIReference
+    url: https://index.affectiva.com/swagger/index.html
+  - type: Login
+    url: https://index.affectiva.com/users/sign_in
+- aid: affectiva:affectiva-labeling-jobs-api
+  name: Affectiva Labeling Jobs API
+  description: The labeling_jobs API from Affectiva — 2 operation(s) for labeling_jobs.
+  humanURL: https://index.affectiva.com/swagger/index.html
+  baseURL: https://index.affectiva.com
+  tags:
+  - labeling_jobs
+  properties:
   - type: OpenAPI
-    url: openapi/affectiva-eaas-video_frames.json
+    url: openapi/affectiva-labeling-jobs-api-openapi.yml
+  - type: APIReference
+    url: https://index.affectiva.com/swagger/index.html
+  - type: Login
+    url: https://index.affectiva.com/users/sign_in
+- aid: affectiva:affectiva-labeling-tasks-api
+  name: Affectiva Labeling Tasks API
+  description: The labeling_tasks API from Affectiva — 2 operation(s) for labeling_tasks.
+  humanURL: https://index.affectiva.com/swagger/index.html
+  baseURL: https://index.affectiva.com
+  tags:
+  - labeling_tasks
+  properties:
   - type: OpenAPI
-    url: openapi/affectiva-eaas-video_segments.json
+    url: openapi/affectiva-labeling-tasks-api-openapi.yml
+  - type: APIReference
+    url: https://index.affectiva.com/swagger/index.html
+  - type: Login
+    url: https://index.affectiva.com/users/sign_in
+- aid: affectiva:affectiva-representation-storages-api
+  name: Affectiva representation storages API
+  description: >-
+    The representation storages API from Affectiva — 2 operation(s) for representation storages.
+  humanURL: https://index.affectiva.com/swagger/index.html
+  baseURL: https://index.affectiva.com
+  tags:
+  - representation storages
+  properties:
   - type: OpenAPI
-    url: openapi/affectiva-eaas-labeling_jobs.json
+    url: openapi/affectiva-representation-storages-api-openapi.yml
+  - type: APIReference
+    url: https://index.affectiva.com/swagger/index.html
+  - type: Login
+    url: https://index.affectiva.com/users/sign_in
+- aid: affectiva:affectiva-representations-api
+  name: Affectiva Representations API
+  description: The representations API from Affectiva — 3 operation(s) for representations.
+  humanURL: https://index.affectiva.com/swagger/index.html
+  baseURL: https://index.affectiva.com
+  tags:
+  - representations
+  properties:
   - type: OpenAPI
-    url: openapi/affectiva-eaas-labeling_tasks.json
+    url: openapi/affectiva-representations-api-openapi.yml
+  - type: APIReference
+    url: https://index.affectiva.com/swagger/index.html
+  - type: Login
+    url: https://index.affectiva.com/users/sign_in
+- aid: affectiva:affectiva-video-frames-api
+  name: Affectiva Video Frames API
+  description: The video_frames API from Affectiva — 2 operation(s) for video_frames.
+  humanURL: https://index.affectiva.com/swagger/index.html
+  baseURL: https://index.affectiva.com
+  tags:
+  - video_frames
+  properties:
   - type: OpenAPI
-    url: openapi/affectiva-eaas-labeling_job_annotations.json
+    url: openapi/affectiva-video-frames-api-openapi.yml
+  - type: APIReference
+    url: https://index.affectiva.com/swagger/index.html
+  - type: Login
+    url: https://index.affectiva.com/users/sign_in
+- aid: affectiva:affectiva-video-segments-api
+  name: Affectiva Video Segments API
+  description: The video_segments API from Affectiva — 2 operation(s) for video_segments.
+  humanURL: https://index.affectiva.com/swagger/index.html
+  baseURL: https://index.affectiva.com
+  tags:
+  - video_segments
+  properties:
+  - type: OpenAPI
+    url: openapi/affectiva-video-segments-api-openapi.yml
   - type: APIReference
     url: https://index.affectiva.com/swagger/index.html
   - type: Login
