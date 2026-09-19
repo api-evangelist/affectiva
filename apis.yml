@@ -53,6 +53,8 @@ apis:
   humanURL: https://index.affectiva.com/swagger/index.html
   baseURL: https://index.affectiva.com
   tags:
+  - Annotation
+  tags_raw:
   - annotations
   properties:
   - type: OpenAPI
@@ -82,6 +84,8 @@ apis:
   humanURL: https://index.affectiva.com/swagger/index.html
   baseURL: https://index.affectiva.com
   tags:
+  - Entries
+  tags_raw:
   - entries
   properties:
   - type: OpenAPI
@@ -138,6 +142,8 @@ apis:
   humanURL: https://index.affectiva.com/swagger/index.html
   baseURL: https://index.affectiva.com
   tags:
+  - Job
+  tags_raw:
   - jobs
   properties:
   - type: OpenAPI
@@ -152,7 +158,8 @@ apis:
     The labeling_job_annotations API from Affectiva — 1 operation(s) for labeling_job_annotations.
   humanURL: https://index.affectiva.com/swagger/index.html
   baseURL: https://index.affectiva.com
-  tags:
+  tags: []
+  tags_raw:
   - labeling_job_annotations
   properties:
   - type: OpenAPI
@@ -166,7 +173,8 @@ apis:
   description: The labeling_jobs API from Affectiva — 2 operation(s) for labeling_jobs.
   humanURL: https://index.affectiva.com/swagger/index.html
   baseURL: https://index.affectiva.com
-  tags:
+  tags: []
+  tags_raw:
   - labeling_jobs
   properties:
   - type: OpenAPI
@@ -180,7 +188,8 @@ apis:
   description: The labeling_tasks API from Affectiva — 2 operation(s) for labeling_tasks.
   humanURL: https://index.affectiva.com/swagger/index.html
   baseURL: https://index.affectiva.com
-  tags:
+  tags: []
+  tags_raw:
   - labeling_tasks
   properties:
   - type: OpenAPI
@@ -210,6 +219,8 @@ apis:
   humanURL: https://index.affectiva.com/swagger/index.html
   baseURL: https://index.affectiva.com
   tags:
+  - Representations
+  tags_raw:
   - representations
   properties:
   - type: OpenAPI
@@ -223,7 +234,8 @@ apis:
   description: The video_frames API from Affectiva — 2 operation(s) for video_frames.
   humanURL: https://index.affectiva.com/swagger/index.html
   baseURL: https://index.affectiva.com
-  tags:
+  tags: []
+  tags_raw:
   - video_frames
   properties:
   - type: OpenAPI
@@ -237,7 +249,8 @@ apis:
   description: The video_segments API from Affectiva — 2 operation(s) for video_segments.
   humanURL: https://index.affectiva.com/swagger/index.html
   baseURL: https://index.affectiva.com
-  tags:
+  tags: []
+  tags_raw:
   - video_segments
   properties:
   - type: OpenAPI
