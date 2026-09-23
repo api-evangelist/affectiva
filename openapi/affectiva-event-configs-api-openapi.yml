@@ -1,0 +1,190 @@
+openapi: 3.2.0
+info:
+  description: This is a documentation for Eaas api-experiments
+  version: 0.1.0
+  title: Eaas event configs API
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: /
+tags:
+- name: event configs
+  externalDocs:
+    description: Find out more
+    url: http://swagger.io
+paths:
+  /data_collection_projects/{projectID}/event_configs:
+    get:
+      tags:
+      - event configs
+      summary: Get the project's event configurations (first one inside the database)
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Not found
+        '405':
+          description: Invalid input
+      parameters:
+      - in: path
+        name: projectID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      security:
+      - basicAuth: []
+      operationId: getDataCollectionProjectsByProjectIDEventConfigs
+      x-operation-id-source: derived
+    post:
+      tags:
+      - event configs
+      summary: Add a new event configuration to the project
+      parameters:
+      - in: path
+        name: projectID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '201':
+          description: Success,created
+        '422':
+          description: Unprocessable Entity
+      security:
+      - basicAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: configs1
+                source:
+                  type: string
+                  example: affectiva
+                data:
+                  type: string
+                  example: 1
+                description:
+                  type: string
+      operationId: postDataCollectionProjectsByProjectIDEventConfigs
+      x-operation-id-source: derived
+  /data_collection_projects/{projectID}/event_configs/{configsID}:
+    get:
+      tags:
+      - event configs
+      summary: Find representation storage by ID
+      description: Returns a single event configuration
+      parameters:
+      - in: path
+        name: projectID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - in: path
+        name: configsID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad request
+        '404':
+          description: Not found
+      security:
+      - basicAuth: []
+      operationId: getDataCollectionProjectsByProjectIDEventConfigsByConfigsID
+      x-operation-id-source: derived
+    put:
+      tags:
+      - event configs
+      summary: Updates an event configurations
+      description: ''
+      parameters:
+      - name: projectID
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: configsID
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Updated successfully
+        '400':
+          description: Bad request
+        '404':
+          description: Not found
+        '422':
+          description: Unprocessable Entity
+      security:
+      - basicAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: configs1
+                source:
+                  type: string
+                  example: affectiva
+                data:
+                  type: string
+                  example: 1
+                description:
+                  type: string
+      operationId: putDataCollectionProjectsByProjectIDEventConfigsByConfigsID
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - event configs
+      summary: Delete event configuration by ID
+      parameters:
+      - in: path
+        name: projectID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - in: path
+        name: configsID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: Deleted successfully
+        '400':
+          description: Bad request
+        '404':
+          description: Not found
+      security:
+      - basicAuth: []
+      operationId: deleteDataCollectionProjectsByProjectIDEventConfigsByConfigsID
+      x-operation-id-source: derived
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io

@@ -1,0 +1,226 @@
+openapi: 3.2.0
+info:
+  description: This is a documentation for Eaas api-experiments
+  version: 0.1.0
+  title: Eaas event instances API
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: /
+tags:
+- name: event instances
+  externalDocs:
+    description: Find out more
+    url: http://swagger.io
+paths:
+  /data_collection_projects/{projectID}/event_configs/{configID}/event_instances:
+    get:
+      tags:
+      - event instances
+      summary: Get the project's event instance
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Not found
+        '405':
+          description: Invalid input
+      parameters:
+      - in: path
+        name: projectID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - in: path
+        name: configID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      security:
+      - basicAuth: []
+      operationId: getDataCollectionProjectsByProjectIDEventConfigsByConfigIDEventInstances
+      x-operation-id-source: derived
+    post:
+      tags:
+      - event instances
+      summary: Add a new event instance to the project
+      parameters:
+      - in: path
+        name: projectID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - in: path
+        name: configID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '201':
+          description: Success,created
+        '422':
+          description: Unprocessable Entity
+      security:
+      - basicAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - parent_entry_id
+              properties:
+                parent_entry_id:
+                  type: integer
+                start_frame_num:
+                  type: integer
+                  example: 20
+                end_frame_num:
+                  type: integer
+                  example: 40
+                start_ts_ms:
+                  type: integer
+                  example: 16433976073929140
+                end_ts_ms:
+                  type: integer
+                  example: 16433976073929170
+      operationId: postDataCollectionProjectsByProjectIDEventConfigsByConfigIDEventInstances
+      x-operation-id-source: derived
+  /data_collection_projects/{projectID}/event_configs/{configsID}/event_instances/{instanceID}:
+    get:
+      tags:
+      - event instances
+      summary: Find an event instance by ID
+      description: Returns a single event instance
+      parameters:
+      - in: path
+        name: projectID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - in: path
+        name: configsID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - in: path
+        name: instanceID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad request
+        '404':
+          description: Not found
+      security:
+      - basicAuth: []
+      operationId: getDataCollectionProjectsByProjectIDEventConfigsByConfigsIDEventInstancesByInstanceID
+      x-operation-id-source: derived
+    put:
+      tags:
+      - event instances
+      summary: Updates an event instance
+      description: ''
+      parameters:
+      - name: projectID
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: configsID
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - in: path
+        name: instanceID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Updated successfully
+        '400':
+          description: Bad request
+        '404':
+          description: Not found
+        '422':
+          description: Unprocessable Entity
+      security:
+      - basicAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_frame_num:
+                  type: integer
+                  example: 20
+                end_frame_num:
+                  type: integer
+                  example: 40
+                start_ts_ms:
+                  type: integer
+                  example: 16433976073929140
+                end_ts_ms:
+                  type: integer
+                  example: 16433976073929170
+      operationId: putDataCollectionProjectsByProjectIDEventConfigsByConfigsIDEventInstancesByInstanceID
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - event instances
+      summary: Delete event instance by ID
+      parameters:
+      - in: path
+        name: projectID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - in: path
+        name: configsID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - in: path
+        name: instanceID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: Deleted successfully
+        '400':
+          description: Bad request
+        '404':
+          description: Not found
+      security:
+      - basicAuth: []
+      operationId: deleteDataCollectionProjectsByProjectIDEventConfigsByConfigsIDEventInstancesByInstanceID
+      x-operation-id-source: derived
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io

@@ -1,0 +1,120 @@
+openapi: 3.2.0
+info:
+  description: This is a documentation for Eaas api-experiments
+  version: 0.1.0
+  title: Eaas api's Video Segments API
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: /
+tags:
+- name: video_segments
+  externalDocs:
+    description: Find out more
+    url: http://swagger.io
+paths:
+  /video_segments:
+    post:
+      tags:
+      - video_segments
+      summary: New Video Segments
+      description: Each video segment entry represents a scenario
+      responses:
+        '201':
+          description: Created
+        '422':
+          description: Unprocessable Entity
+        '500':
+          description: Internal Server Error
+      security:
+      - basicAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - segment_sampling_job_id
+              - segment_entry_id
+              - start_ts_ms
+              - end_ts_ms
+              - start_frame_index
+              - end_frame_index
+              - start_frame_num
+              - end_frame_num
+              properties:
+                segment_sampling_job_id:
+                  type: integer
+                  format: int64
+                  description: Sampling job id
+                  example: 4305
+                segment_entry_id:
+                  description: entry id
+                  type: integer
+                  format: int64
+                  example: 7435900914230181163
+                start_ts_ms:
+                  description: start timestamp
+                  type: integer
+                  format: int64
+                  example: 16433976073929140
+                end_ts_ms:
+                  description: end timestamp, must be greater than 0
+                  type: integer
+                  format: int64
+                  example: 16433976568614800
+                start_frame_index:
+                  description: start frame index
+                  type: integer
+                  format: int64
+                  example: 112
+                end_frame_index:
+                  description: end frame index,  must be greater than 0
+                  type: integer
+                  format: int64
+                  example: 308
+                start_frame_num:
+                  description: start frame number
+                  type: integer
+                  format: int64
+                  example: 567390
+                end_frame_num:
+                  description: end frame number,  must be greater than 0
+                  type: integer
+                  format: int64
+                  example: 570358
+        required: true
+      operationId: postVideoSegments
+      x-operation-id-source: derived
+  /video_segments/{id}:
+    delete:
+      tags:
+      - video_segments
+      summary: Delete video segment object
+      description: Delete video segment object using video segment id
+      parameters:
+      - name: id
+        in: path
+        description: Video segment object id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: Not content
+        '404':
+          description: Video segment not found
+      security:
+      - basicAuth: []
+      operationId: deleteVideoSegmentsById
+      x-operation-id-source: derived
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io

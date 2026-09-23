@@ -1,0 +1,2 @@
+# x-archived-from: affectiva-eaas-event_configs.json
+# x-archived-on: 2026-09-16

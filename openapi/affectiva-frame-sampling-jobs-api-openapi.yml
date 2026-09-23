@@ -1,0 +1,76 @@
+openapi: 3.2.0
+info:
+  description: This is a documentation for Eaas api-experiments
+  version: 0.1.0
+  title: Eaas frame sampling jobs API
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: /
+tags:
+- name: frame sampling jobs
+  externalDocs:
+    description: Find out more
+    url: http://swagger.io
+paths:
+  /frame_sampling_jobs:
+    post:
+      tags:
+      - frame sampling jobs
+      summary: Create a sampling job for video frames / video segments
+      responses:
+        '201':
+          description: Created Successfully
+        '422':
+          description: Unprocessable Entity
+        '500':
+          description: Internal Server Error
+      security:
+      - basicAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                frame_sampling_job:
+                  type: object
+                  required:
+                  - entry_id
+                  - sampling_configuration_attributes
+                  properties:
+                    entry_id:
+                      type: integer
+                    sampling_configuration_attributes:
+                      type: object
+                      required:
+                      - name
+                      - output_type
+                      properties:
+                        name:
+                          type: string
+                          example: whole_film
+                        output_type:
+                          type: string
+                          example: segments
+                        start_delay:
+                          type: string
+                          example: 0
+                        end_delay:
+                          type: string
+                          example: 0
+                        extra_config:
+                          type: string
+                          example: 'epav_run: preannotatedvideos_9b747ce5_20220525T112435Z_474_release'
+        required: true
+      operationId: postFrameSamplingJobs
+      x-operation-id-source: derived
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io

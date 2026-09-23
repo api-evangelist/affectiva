@@ -1,0 +1,216 @@
+openapi: 3.2.0
+info:
+  description: This is a documentation for Eaas api-experiments
+  version: 0.1.0
+  title: Eaas representation storages API
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: /
+tags:
+- name: representation storages
+  externalDocs:
+    description: Find out more
+    url: http://swagger.io
+paths:
+  /entries/{entryID}/representations/{representationID}/representation_storages:
+    get:
+      tags:
+      - representation storages
+      summary: Get all representation storages
+      description: ''
+      responses:
+        '200':
+          description: Success
+        '405':
+          description: Invalid input
+      parameters:
+      - in: path
+        name: entryID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - in: path
+        name: representationID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      security:
+      - basicAuth: []
+      operationId: getEntriesByEntryIDRepresentationsByRepresentationIDRepresentationStorages
+      x-operation-id-source: derived
+    post:
+      tags:
+      - representation storages
+      summary: Add a new representation storage
+      description: ''
+      parameters:
+      - in: path
+        name: entryID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - in: path
+        name: representationID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '201':
+          description: Success, storage type created
+        '422':
+          description: Unprocessable Entity
+      security:
+      - basicAuth: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                storage_type:
+                  type: string
+                  description: storage type(s3-efs-nas)
+              required:
+              - storage_type
+          application/json:
+            schema:
+              type: object
+              properties:
+                storage_type:
+                  type: string
+                  description: storage type(s3-efs-nas)
+              required:
+              - storage_type
+      operationId: postEntriesByEntryIDRepresentationsByRepresentationIDRepresentationStorages
+      x-operation-id-source: derived
+  /entries/{entryID}/representations/{representationID}/representation_storages/{storageID}:
+    get:
+      tags:
+      - representation storages
+      summary: Find representation storage by ID
+      description: Returns a single representation storage
+      parameters:
+      - in: path
+        name: entryID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - in: path
+        name: representationID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: storageID
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad request
+        '404':
+          description: Not found
+      security:
+      - basicAuth: []
+      operationId: getEntriesByEntryIDRepresentationsByRepresentationIDRepresentationStoragesByStorageID
+      x-operation-id-source: derived
+    put:
+      tags:
+      - representation storages
+      summary: Updates a representation storage
+      description: ''
+      parameters:
+      - name: entryID
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: representationID
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: storageID
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Updated successfully
+        '400':
+          description: Bad request
+        '404':
+          description: Not found
+        '422':
+          description: Unprocessable Entity
+      security:
+      - basicAuth: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                storage_type:
+                  type: string
+              required:
+              - storage_type
+      operationId: putEntriesByEntryIDRepresentationsByRepresentationIDRepresentationStoragesByStorageID
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - representation storages
+      summary: Delete representation storage by ID
+      parameters:
+      - in: path
+        name: entryID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - in: path
+        name: representationID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: storageID
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: Deleted successfully
+        '400':
+          description: Bad request
+        '404':
+          description: Not found
+      security:
+      - basicAuth: []
+      operationId: deleteEntriesByEntryIDRepresentationsByRepresentationIDRepresentationStoragesByStorageID
+      x-operation-id-source: derived
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io

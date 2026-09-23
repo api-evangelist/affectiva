@@ -1,0 +1,124 @@
+openapi: 3.2.0
+info:
+  description: This is a documentation for Eaas api-experiments
+  version: 0.1.0
+  title: Eaas Entries Annotations API
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: /
+tags:
+- name: Annotations
+paths:
+  /entries/{entryID}/annotations:
+    post:
+      tags:
+      - Annotations
+      summary: Add annotation to an existing entry
+      parameters:
+      - in: path
+        name: entryID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '201':
+          description: Success
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                annotation:
+                  type: object
+                  required:
+                  - key
+                  - value
+                  - source
+                  properties:
+                    key:
+                      type: string
+                      example: Project
+                    value:
+                      type: string
+                      example: DAC016
+                    source:
+                      type: string
+                      example: affectiva
+      operationId: postEntriesByEntryIDAnnotations
+      x-operation-id-source: derived
+  /entries/{entryID}/annotations/{annotationID}:
+    put:
+      tags:
+      - Annotations
+      summary: update annotation
+      parameters:
+      - in: path
+        name: entryID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - in: path
+        name: annotationID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: Success
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                annotation:
+                  type: object
+                  properties:
+                    source:
+                      type: string
+                      example: smarteye
+        required: true
+      operationId: putEntriesByEntryIDAnnotationsByAnnotationID
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - Annotations
+      summary: delete annotation
+      parameters:
+      - in: path
+        name: entryID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - in: path
+        name: annotationID
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: Deleted successfully
+        '400':
+          description: Bad request
+        '404':
+          description: Not found
+      security:
+      - basicAuth: []
+      operationId: deleteEntriesByEntryIDAnnotationsByAnnotationID
+      x-operation-id-source: derived
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io

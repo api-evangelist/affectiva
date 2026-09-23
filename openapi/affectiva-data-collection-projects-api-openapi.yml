@@ -1,0 +1,155 @@
+openapi: 3.2.0
+info:
+  description: This is a documentation for Eaas api-experiments
+  version: 0.1.0
+  title: Eaas data collection projects API
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: /
+tags:
+- name: data collection projects
+  externalDocs:
+    description: Find out more
+    url: http://swagger.io
+paths:
+  /data_collection_projects:
+    get:
+      tags:
+      - data collection projects
+      summary: Get all existing data collection projects
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Not found
+        '405':
+          description: Invalid input
+      security:
+      - basicAuth: []
+      operationId: getDataCollectionProjects
+      x-operation-id-source: derived
+    post:
+      tags:
+      - data collection projects
+      summary: Add a new data collection project
+      responses:
+        '201':
+          description: Success,created
+        '422':
+          description: Unprocessable Entity
+      security:
+      - basicAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - use_case
+              properties:
+                name:
+                  type: string
+                  example: DAC016
+                use_case:
+                  type: string
+                  example: use case
+                json_schema:
+                  type: string
+      operationId: postDataCollectionProjects
+      x-operation-id-source: derived
+  /data_collection_projects/{id}:
+    get:
+      tags:
+      - data collection projects
+      summary: Find data collection project by ID
+      description: Returns a single project
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad request
+        '404':
+          description: Not found
+      security:
+      - basicAuth: []
+      operationId: getDataCollectionProjectsById
+      x-operation-id-source: derived
+    put:
+      tags:
+      - data collection projects
+      summary: Updates a data collection project info
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Updated successfully
+        '400':
+          description: Bad request
+        '404':
+          description: Not found
+        '422':
+          description: Unprocessable Entity
+      security:
+      - basicAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: DAC016
+                use_case:
+                  type: string
+                  example: use case
+                json_schema:
+                  type: string
+      operationId: putDataCollectionProjectsById
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - data collection projects
+      summary: Delete data collection project by ID
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: Deleted successfully
+        '400':
+          description: Bad request
+        '404':
+          description: Not found
+      security:
+      - basicAuth: []
+      operationId: deleteDataCollectionProjectsById
+      x-operation-id-source: derived
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io

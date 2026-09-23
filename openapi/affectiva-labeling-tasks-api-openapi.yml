@@ -1,0 +1,149 @@
+openapi: 3.2.0
+info:
+  description: This is a documentation for Eaas api-experiments
+  version: 0.1.0
+  title: Eaas Labeling Tasks API
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: /
+tags:
+- name: labeling_tasks
+  externalDocs:
+    description: Find out more
+    url: http://swagger.io
+paths:
+  /labeling_tasks:
+    post:
+      tags:
+      - labeling_tasks
+      summary: New labeling tasks object
+      description: Each entry has a labeling task sent to vendor to be annotated
+      responses:
+        '201':
+          description: Created Successfully
+        '422':
+          description: Unprocessable Entity
+        '500':
+          description: Internal Server Error
+      security:
+      - basicAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - entry_id
+              - labeling_job_id
+              - task_id
+              properties:
+                entry_id:
+                  type: integer
+                labeling_job_id:
+                  type: integer
+                task_id:
+                  description: descripes the labeling task
+                  type: string
+                  example: smile
+                status:
+                  type: string
+                  default: pending
+                  enum:
+                  - pending
+                  - accepted
+                  - rejected
+        required: true
+      operationId: postLabelingTasks
+      x-operation-id-source: derived
+  /labeling_tasks/{id}:
+    get:
+      tags:
+      - labeling_tasks
+      summary: Delete labeling task object
+      parameters:
+      - name: id
+        in: path
+        description: Labeling task object id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Success
+        '204':
+          description: Not content
+        '404':
+          description: Not found
+      security:
+      - basicAuth: []
+      operationId: getLabelingTasksById
+      x-operation-id-source: derived
+    put:
+      tags:
+      - labeling_tasks
+      summary: Update labeling tasks object
+      parameters:
+      - name: id
+        in: path
+        description: Labeling task object id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Updated Successfully
+        '422':
+          description: Unprocessable Entity
+        '500':
+          description: Internal Server Error
+      security:
+      - basicAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  default: pending
+                  enum:
+                  - pending
+                  - accepted
+                  - rejected
+        required: true
+      operationId: putLabelingTasksById
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - labeling_tasks
+      summary: Delete labeling task object
+      parameters:
+      - name: id
+        in: path
+        description: Labeling task object id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: Not content
+        '404':
+          description: Labeling job not found
+      security:
+      - basicAuth: []
+      operationId: deleteLabelingTasksById
+      x-operation-id-source: derived
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io

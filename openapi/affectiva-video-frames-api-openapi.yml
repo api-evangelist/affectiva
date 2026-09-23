@@ -1,0 +1,97 @@
+openapi: 3.2.0
+info:
+  description: This is a documentation for Eaas api-experiments
+  version: 0.1.0
+  title: Eaas Video Frames API
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: /
+tags:
+- name: video_frames
+  externalDocs:
+    description: Find out more
+    url: http://swagger.io
+paths:
+  /video_frames:
+    post:
+      tags:
+      - video_frames
+      summary: New Video frame object
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad request
+        '422':
+          description: Unprocessable Entity
+        '500':
+          description: Internal Server Error
+      security:
+      - basicAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - entry_id
+              - frame_sampling_job_id
+              - timestamp_ms
+              - frame_number
+              properties:
+                frame_sampling_job_id:
+                  type: integer
+                  format: int64
+                  description: Sampling job id
+                  example: 4305
+                entry_id:
+                  description: entry id
+                  type: integer
+                  format: int64
+                  example: 7435900914230181163
+                timestamp_ms:
+                  description: start timestamp
+                  type: integer
+                  format: int64
+                  example: 16433976073929140
+                frame_number:
+                  description: end timestamp, must be greater than 0
+                  type: integer
+                  format: int64
+                  example: 16433976568614800
+        required: true
+      operationId: postVideoFrames
+      x-operation-id-source: derived
+  /video_frames/{id}:
+    delete:
+      tags:
+      - video_frames
+      summary: Delete video frame object
+      description: Delete video frame object using video frame id
+      parameters:
+      - name: id
+        in: path
+        description: Video frame object id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: Not content
+        '404':
+          description: Video frame not found
+      security:
+      - basicAuth: []
+      operationId: deleteVideoFramesById
+      x-operation-id-source: derived
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io

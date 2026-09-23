@@ -1,0 +1,119 @@
+openapi: 3.2.0
+info:
+  description: This is a documentation for Eaas api-experiments
+  version: 0.1.0
+  title: Eaas labeling jobs annotations api's Labeling Job…
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: /
+tags:
+- name: labeling_job_annotations
+  externalDocs:
+    description: Find out more
+    url: http://swagger.io
+paths:
+  /labeling_job_annotations:
+    post:
+      tags:
+      - labeling_job_annotations
+      summary: New labeling job annotation object
+      responses:
+        '201':
+          description: Created Successfully
+        '422':
+          description: Unprocessable Entity
+        '500':
+          description: Internal Server Error
+      security:
+      - basicAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - labeling_job_id
+              - label_name
+              - label_type
+              properties:
+                labeling_job_id:
+                  type: integer
+                  format: int
+                  description: Labeling job id
+                  example: 1
+                label_name:
+                  description: Label name
+                  type: string
+                  example: project
+                label_type:
+                  description: Label name
+                  type: string
+                extra_config:
+                  type: object
+        required: true
+      operationId: postLabelingJobAnnotations
+      x-operation-id-source: derived
+    patch:
+      tags:
+      - labeling_job_annotations
+      summary: Update labeling job annotation object
+      parameters:
+      - in: query
+        name: labeling_job_id
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Updated successfully
+        '422':
+          description: Unprocessable Entity
+        '500':
+          description: Internal Server Error
+      security:
+      - basicAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                label_name:
+                  description: data will be updated
+                  type: string
+                  example: pupil_size|bodypoints|objects
+        required: true
+      operationId: patchLabelingJobAnnotations
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - labeling_job_annotations
+      summary: Delete labeling job annotation object
+      description: Delete labeling job annotation object using id
+      parameters:
+      - name: labeling_job_id
+        in: query
+        description: Labeling job annotation object id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: Not content
+        '404':
+          description: Labeling job not found
+      security:
+      - basicAuth: []
+      operationId: deleteLabelingJobAnnotations
+      x-operation-id-source: derived
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io

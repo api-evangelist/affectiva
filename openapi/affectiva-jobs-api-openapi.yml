@@ -1,0 +1,144 @@
+openapi: 3.2.0
+info:
+  description: This is a documentation for Eaas api-experiments
+  version: 0.1.0
+  title: Eaas Jobs API
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+- url: /
+tags:
+- name: Jobs
+  description: Everything about your jobss
+  externalDocs:
+    description: Find out more
+    url: http://swagger.io
+paths:
+  /jobs:
+    get:
+      tags:
+      - Jobs
+      summary: Get all jobs
+      description: ''
+      responses:
+        '200':
+          description: Success
+        '405':
+          description: Invalid input
+      security:
+      - basicAuth: []
+      operationId: getJobs
+      x-operation-id-source: derived
+    post:
+      tags:
+      - Jobs
+      summary: Add a new job
+      description: ''
+      responses:
+        '201':
+          description: Success, job created
+        '422':
+          description: Unprocessable Entity
+      security:
+      - basicAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                entry_job[name]:
+                  type: string
+                  default: auto
+                  description: name of the algorithm encoder
+                entry_job[input]:
+                  type: string
+                  description: Entry media file path on Eaas
+                  format: binary
+                entry_job[input_url]:
+                  type: string
+                  description: full path to the entry media file
+                entry_job[storage_type]:
+                  type: string
+                  default: s3
+                  description: storage type(s3-efs-nas)
+              required:
+              - entry_job[name]
+      operationId: postJobs
+      x-operation-id-source: derived
+  /jobs/{jobID}:
+    get:
+      tags:
+      - Jobs
+      summary: Find job by ID
+      description: Returns a single job
+      parameters:
+      - name: jobID
+        in: path
+        description: ID of job to return
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Job not found
+      security:
+      - basicAuth: []
+      operationId: getJobsByJobID
+      x-operation-id-source: derived
+    put:
+      tags:
+      - Jobs
+      summary: Updates a jobs
+      description: ''
+      parameters:
+      - name: jobID
+        in: path
+        description: ID of the job that needs to be updated
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Job updated successfully
+        '400':
+          description: Bad request
+        '404':
+          description: Not found
+        '422':
+          description: Unprocessable Entity
+      security:
+      - basicAuth: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                entry_job[storage_type]:
+                  type: string
+                entry_job[status]:
+                  type: string
+                entry_job[result]:
+                  type: string
+                  description: Entry media file updated
+                  format: binary
+                entry_job[name]:
+                  type: string
+      operationId: putJobsByJobID
+      x-operation-id-source: derived
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
