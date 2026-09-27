@@ -22,8 +22,8 @@ tags:
 - Company
 - Emotion AI
 - Artificial Intelligence
-- Machine-Learning
-- Computer-Vision
+- Machine Learning
+- Computer Vision
 - Facial Coding
 - Facial Expression Analysis
 - Media Analytics
@@ -46,6 +46,8 @@ tags_raw:
 - Driver Monitoring
 - Video Analysis
 - Affective Computing
+- Machine-Learning
+- Computer-Vision
 apis:
 - aid: affectiva:affectiva-annotations-api
   name: Affectiva Annotations API
