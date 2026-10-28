@@ -64,12 +64,140 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Affectiva is an Emotion AI company founded out of the MIT Media Lab and headquartered in Boston, Massachusetts. Its AFFDEX science analyzes spontaneous facial expressions and speech to measure emotion, attention and cognitive state, trained on what the company describes as the world's largest emotion data set. The technology is sold into media analytics (ad testing, entertainment content testing, qualitative research), in-cabin automotive sensing, and academic behavioral research. Affectiva was acquired by Smart Eye AB in 2021 and its commercial product line has since been folded into the iMotions brand.
+Affectiva is an Emotion AI company founded out of the MIT Media Lab and headquartered in Boston, Massachusetts. Its AFFDEX science analyzes spontaneous facial expressions and speech to measure emotion, attention and cognitive state, trained on what the company describes as the world's largest emotion data set — 17.4M face videos and 8B facial frames gathered across 90 countries over 18 years. The technology is sold into media analytics (ad testing, entertainment content testing, qualitative research), in-cabin automotive sensing for driver and occupant monitoring, and academic behavioral research. Affectiva was acquired by Smart Eye AB in 2021 and its commercial product line has since been folded into the iMotions brand. Its developer surface is the Affectiva Facial Coding API — a cloud "EaaS" (Emotion as a Service) platform documented by thirteen Swagger 2.0 contracts at index.affectiva.com/swagger, plus the browser-side affdex.js Emotion SDK distributed from the company CDN and an Automotive SDK available on request.
 
-The developer surface profiled here is the **Affectiva Facial Coding API** ("EaaS" — Emotion as a Service): thirteen Swagger 2.0 contracts totalling 51 operations, served from the Swagger UI at <https://index.affectiva.com/swagger/index.html> and harvested verbatim into `openapi/`. The live API answers `WWW-Authenticate: Basic realm="Affectiva Facial Coding API"`, which is also the ownership proof for the contract set.
+**Areas:** Company · Emotion AI · Artificial Intelligence · Machine Learning · Computer Vision · Facial Coding · Facial Expression Analysis · Media Analytics · Market Research · Automotive · Driver Monitoring · Video Analysis
 
-- Website: <https://www.affectiva.com/>
-- API reference: <https://index.affectiva.com/swagger/index.html>
-- Console sign-in: <https://index.affectiva.com/users/sign_in>
-- Emotion SDK for the Web (affdex.js 3.2.1, last built 2018-07-24): <https://download.affectiva.com/js/3.2.1/affdex.js>
-- GitHub: <https://github.com/affectiva>
+## Affectiva on APIs.io
+
+Everything profiled for Affectiva is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/affectiva/](https://apis.io/providers/affectiva/)** — or go straight to one of the APIs or properties below.
+
+### APIs (14)
+
+- [Affectiva Annotations API](https://apis.io/apis/affectiva/affectiva-annotations-api/) — The annotations API from Affectiva — 2 operation(s) for annotations.
+- [Affectiva data collection projects API](https://apis.io/apis/affectiva/affectiva-data-collection-projects-api/) — The data collection projects API from Affectiva — 2 operation(s) for data collection projects.
+- [Affectiva Entries API](https://apis.io/apis/affectiva/affectiva-entries-api/) — The entries API from Affectiva — 3 operation(s) for entries.
+- [Affectiva event configs API](https://apis.io/apis/affectiva/affectiva-event-configs-api/) — The event configs API from Affectiva — 2 operation(s) for event configs.
+- [Affectiva event instances API](https://apis.io/apis/affectiva/affectiva-event-instances-api/) — The event instances API from Affectiva — 2 operation(s) for event instances.
+- [Affectiva frame sampling jobs API](https://apis.io/apis/affectiva/affectiva-frame-sampling-jobs-api/) — The frame sampling jobs API from Affectiva — 1 operation(s) for frame sampling jobs.
+- [Affectiva Jobs API](https://apis.io/apis/affectiva/affectiva-jobs-api/) — Everything about your jobss
+- [Affectiva Labeling Job Annotations API](https://apis.io/apis/affectiva/affectiva-labeling-job-annotations-api/) — The labeling_job_annotations API from Affectiva — 1 operation(s) for labeling_job_annotations.
+- [Affectiva Labeling Jobs API](https://apis.io/apis/affectiva/affectiva-labeling-jobs-api/) — The labeling_jobs API from Affectiva — 2 operation(s) for labeling_jobs.
+- [Affectiva Labeling Tasks API](https://apis.io/apis/affectiva/affectiva-labeling-tasks-api/) — The labeling_tasks API from Affectiva — 2 operation(s) for labeling_tasks.
+- [Affectiva representation storages API](https://apis.io/apis/affectiva/affectiva-representation-storages-api/) — The representation storages API from Affectiva — 2 operation(s) for representation storages.
+- [Affectiva Representations API](https://apis.io/apis/affectiva/affectiva-representations-api/) — The representations API from Affectiva — 3 operation(s) for representations.
+- [Affectiva Video Frames API](https://apis.io/apis/affectiva/affectiva-video-frames-api/) — The video_frames API from Affectiva — 2 operation(s) for video_frames.
+- [Affectiva Video Segments API](https://apis.io/apis/affectiva/affectiva-video-segments-api/) — The video_segments API from Affectiva — 2 operation(s) for video_segments.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [affectiva-mcp.yml](https://apis.io/servers/affectiva/affectiva-mcp-yml/)
+
+#### Overlays (13)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Affectiva Eaas Data_Collection_Projects Overlay](https://apis.io/overlays/affectiva/affectiva-eaas-data_collection_projects-overlay/)
+- [Affectiva Eaas Entries Overlay](https://apis.io/overlays/affectiva/affectiva-eaas-entries-overlay/)
+- [Affectiva Eaas Event_Configs Overlay](https://apis.io/overlays/affectiva/affectiva-eaas-event_configs-overlay/)
+- [Affectiva Eaas Event_Instances Overlay](https://apis.io/overlays/affectiva/affectiva-eaas-event_instances-overlay/)
+- [Affectiva Eaas Frame_Sampling_Jobs Overlay](https://apis.io/overlays/affectiva/affectiva-eaas-frame_sampling_jobs-overlay/)
+- [Affectiva Eaas Jobs Overlay](https://apis.io/overlays/affectiva/affectiva-eaas-jobs-overlay/)
+- [Affectiva Eaas Labeling_Job_Annotations Overlay](https://apis.io/overlays/affectiva/affectiva-eaas-labeling_job_annotations-overlay/)
+- [Affectiva Eaas Labeling_Jobs Overlay](https://apis.io/overlays/affectiva/affectiva-eaas-labeling_jobs-overlay/)
+- [Affectiva Eaas Labeling_Tasks Overlay](https://apis.io/overlays/affectiva/affectiva-eaas-labeling_tasks-overlay/)
+- [Affectiva Eaas Representation_Storages Overlay](https://apis.io/overlays/affectiva/affectiva-eaas-representation_storages-overlay/)
+- [Affectiva Eaas Representations Overlay](https://apis.io/overlays/affectiva/affectiva-eaas-representations-overlay/)
+- [Affectiva Eaas Video_Frames Overlay](https://apis.io/overlays/affectiva/affectiva-eaas-video_frames-overlay/)
+- [Affectiva Eaas Video_Segments Overlay](https://apis.io/overlays/affectiva/affectiva-eaas-video_segments-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Affectiva Authentication](https://apis.io/security/affectiva/affectiva-authentication/)
+- [Affectiva Domain Security](https://apis.io/security/affectiva/affectiva-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Affectiva Plans Pricing](https://apis.io/plans/affectiva/affectiva-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Affectiva Rate Limits](https://apis.io/rate-limits/affectiva/affectiva-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.affectiva.com/)
+- [Documentation](https://imotions.com/support/document-library/affectiva-for-facial-expression-analysis/)
+- [API reference](https://index.affectiva.com/swagger/index.html)
+- [Support](https://www.affectiva.com/contact-us/)
+- [Blog](https://blog.affectiva.com/)
+- [Terms of service](https://www.affectiva.com/terms-of-service/)
+- [Privacy policy](https://www.affectiva.com/privacy-policy/)
+- [GitHub](https://github.com/affectiva)
+
+## API Evangelist rating
+
+**Kin Score 33.3** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 71.4 |
+| Contract quality | 43.9 |
+| Contract governance | 4.5 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 44.6 |
+| Access clarity | 27.6 |
+
+**Agent readiness 22.1** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 21.9** — AI & Biometrics
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/affectiva/](https://apis.io/providers/affectiva/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Affectiva: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/affectiva/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
